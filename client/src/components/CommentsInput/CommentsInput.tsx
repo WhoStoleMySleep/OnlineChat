@@ -1,10 +1,19 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setComments } from '../../redux/componentReducers/comments';
 import './CommentsInput.scss';
 
 const CommentsInput = () => {
   const [text, setText] = useState('');
 
+  const comments = useSelector((state: { comments: any }) => state.comments);
+  const dispatch = useDispatch();
 
+  const genId = () => {
+    const min = Math.ceil(0);
+    const max = Math.floor(999999999);
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const targetValue = event.target.value;
@@ -16,6 +25,9 @@ const CommentsInput = () => {
     event.preventDefault();
 
     if (text) {
+      dispatch(
+        setComments([...comments.comments, { text: text, id: genId() }])
+      );
       setText('');
     }
   };
