@@ -9,6 +9,7 @@ const {
   GraphQLList,
 } = graphql;
 
+const Comment = require('../models/comment');
 
 
 const CommentType = new GraphQLObjectType({
@@ -27,6 +28,7 @@ const Query = new GraphQLObjectType({
       type: CommentType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
+        return Comment.findById(args.id);
       },
     },
     comments: {
