@@ -21,6 +21,26 @@ const CommentType = new GraphQLObjectType({
   }),
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addComment: {
+      type: CommentType,
+      args: {
+        text: { type: new GraphQLNonNull(GraphQLString) },
+        author: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, { text, author }) {
+        const comment = new Comment({
+          text,
+          author,
+        });
+        comment.save();
+      },
+    },
+  },
+});
+
 const Query = new GraphQLObjectType({
   name: 'Query',
   fields: {
@@ -42,4 +62,5 @@ const Query = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
