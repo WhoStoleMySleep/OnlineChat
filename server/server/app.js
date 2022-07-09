@@ -2,6 +2,7 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('../schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3005;
@@ -9,6 +10,8 @@ const PORT = 3005;
 mongoose.connect(
   'mongodb+srv://konstantin:e3oNRt6py371SPuh@onlinechat.nxh452d.mongodb.net/?retryWrites=true&w=majority'
 );
+
+app.use(cors());
 
 app.use(
   '/graphql',
