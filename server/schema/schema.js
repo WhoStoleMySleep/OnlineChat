@@ -7,6 +7,7 @@ const {
   GraphQLID,
   GraphQLInt,
   GraphQLList,
+  GraphQLNonNull,
 } = graphql;
 
 const Comment = require('../models/comment');
@@ -16,8 +17,8 @@ const CommentType = new GraphQLObjectType({
   name: 'Comment',
   fields: () => ({
     id: { type: GraphQLID },
-    text: { type: GraphQLString },
-    author: { type: GraphQLString },
+    text: { type: new GraphQLNonNull(GraphQLString) },
+    author: { type: new GraphQLNonNull(GraphQLString) },
   }),
 });
 
@@ -47,14 +48,15 @@ const Query = new GraphQLObjectType({
     comment: {
       type: CommentType,
       args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
-        return Comment.findById(args.id);
+      resolve(parent, { id }) {
+        return Comment.findById(id);
       },
     },
     comments: {
       type: new GraphQLList(CommentType),
       args: { start: { type: GraphQLInt }, end: { type: GraphQLInt } },
       resolve(parent, args) {
+        return Comment.find({});
       },
     },
   },
