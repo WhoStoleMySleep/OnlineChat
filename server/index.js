@@ -49,7 +49,7 @@ const MONGODB =
   const PORT = 3005;
 
   httpServer.listen(
-    PORT,
+    process.env.PORT || PORT,
     console.log(`Http server is now running on port ${PORT}`)
   );
 })();
