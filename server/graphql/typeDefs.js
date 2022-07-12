@@ -17,7 +17,7 @@ module.exports = gql`
   }
 
   type Mutation {
-    createMessage(text: String!, author: String!): ID!
+    createMessage(text: String!, author: String!): Message!
   }
 
   type Subscription {
