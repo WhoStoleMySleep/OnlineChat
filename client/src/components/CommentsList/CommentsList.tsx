@@ -1,7 +1,28 @@
+import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setComments } from '../../redux/componentReducers/comments';
 import './CommentsList.scss';
+
+const MESSAGES_SUBSCRIPTION = gql`
+  subscription MessageCreated {
+    messageCreated {
+      text
+      author
+    }
+  }
+`;
+
+const MESSAGES_QUERY = gql`
+  query Messages {
+    messages {
+      id
+      text
+      author
+    }
+  }
+`;
+
 const CommentsList = () => {
   const comments = useSelector((state: { comments: any }) => state.comments);
   const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
