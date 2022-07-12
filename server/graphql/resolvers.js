@@ -32,5 +32,8 @@ module.exports = {
     },
   },
   Query: {
+    messages: async () => {
+      return Message.find({});
+    },
   },
 };
