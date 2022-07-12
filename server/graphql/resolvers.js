@@ -5,7 +5,7 @@ const pubsub = new PubSub();
 
 module.exports = {
   Mutation: {
-    async createMessage(_, { messageInput: { text, author } }) {
+    async createMessage(_, { text, author }) {
       const newMessage = new Message({
         text: text,
         author: author,
