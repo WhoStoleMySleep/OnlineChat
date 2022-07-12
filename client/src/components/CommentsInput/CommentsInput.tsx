@@ -17,14 +17,10 @@ const addMessageMutation = gql`
 const CommentsInput = () => {
   const [text, setText] = useState('');
 
+  const [saveMessage, { loading }] = useMutation(addMessageMutation);
+
   const comments = useSelector((state: { comments: any }) => state.comments);
   const dispatch = useDispatch();
-
-  const genId = () => {
-    const min = Math.ceil(0);
-    const max = Math.floor(999999999);
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const targetValue = event.target.value;
@@ -35,10 +31,13 @@ const CommentsInput = () => {
   const handleTarget = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (text) {
-      dispatch(
-        setComments([...comments.comments, { text: text, id: genId() }])
-      );
+    if (text && author) {
+      saveMessage({
+        variables: {
+          text,
+          author,
+        },
+      });
       setText('');
     }
   };
