@@ -1,7 +1,18 @@
+import { gql, useMutation } from '@apollo/react-hoc';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setComments } from '../../redux/componentReducers/comments';
 import './CommentsInput.scss';
+
+const addMessageMutation = gql`
+  mutation messageCreated($text: String!, $author: String!) {
+    createMessage(text: $text, author: $author) {
+      id
+      text
+      author
+    }
+  }
+`;
 
 const CommentsInput = () => {
   const [text, setText] = useState('');
