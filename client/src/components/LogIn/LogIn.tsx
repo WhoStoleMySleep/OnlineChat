@@ -23,6 +23,7 @@ const LogIn = () => {
           type="text"
           className="log-in__author"
           placeholder="Enter your nickname"
+          maxLength={25}
         />
         <br />
         <button
