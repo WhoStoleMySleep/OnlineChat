@@ -1,10 +1,10 @@
 import './App.scss';
-import Comments from './components/Comments/Comments';
+import Messages from './components/Messages/Messages';
 
 function App() {
   return (
     <div className="App">
-      <Comments />
+      <Messages />
     </div>
   );
 }

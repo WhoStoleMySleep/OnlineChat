@@ -1,8 +1,8 @@
 import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setComments } from '../../redux/componentReducers/comments';
-import './CommentsList.scss';
+import { setMessages } from '../../redux/componentReducers/messages';
+import './MessagesList.scss';
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
@@ -23,8 +23,8 @@ const MESSAGES_QUERY = gql`
   }
 `;
 
-const CommentsList = () => {
-  const comments = useSelector((state: { comments: any }) => state.comments);
+const MessagesList = () => {
+  const messages = useSelector((state: { messages: any }) => state.messages);
   const dispatch = useDispatch();
 
   const idGen = () => {
@@ -36,7 +36,7 @@ const CommentsList = () => {
   const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
 
   useEffect(() => {
-    if (!loadingQuery) dispatch(setComments(dataQuery.messages));
+    if (!loadingQuery) dispatch(setMessages(dataQuery.messages));
   }, [!loadingQuery]);
 
   const { loading, data } = useSubscription(MESSAGES_SUBSCRIPTION, {
@@ -44,18 +44,15 @@ const CommentsList = () => {
       const message = data.subscriptionData.data.messageCreated;
 
       dispatch(
-        setComments([...comments.comments, { id: idGen(), ...message }])
+        setMessages([...messages.messages, { id: idGen(), ...message }])
       );
     },
   });
 
   return (
-    <ul className="comments-list">
-      {comments.comments.map((res: { text: string; id: number }) => (
-        <li key={res.id}>{res.text}</li>
-      ))}
+    <ul className="messages-list">
     </ul>
   );
 };
 
-export default CommentsList;
+export default MessagesList;

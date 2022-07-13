@@ -1,8 +1,6 @@
 import { gql, useMutation } from '@apollo/react-hoc';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setComments } from '../../redux/componentReducers/comments';
-import './CommentsInput.scss';
+import './MessagesInput.scss';
 
 const addMessageMutation = gql`
   mutation messageCreated($text: String!, $author: String!) {
@@ -14,13 +12,10 @@ const addMessageMutation = gql`
   }
 `;
 
-const CommentsInput = () => {
+const MessagesInput = () => {
   const [text, setText] = useState('');
 
-  const [saveMessage, { loading }] = useMutation(addMessageMutation);
-
-  const comments = useSelector((state: { comments: any }) => state.comments);
-  const dispatch = useDispatch();
+  const [saveMessage] = useMutation(addMessageMutation);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const targetValue = event.target.value;
@@ -31,11 +26,14 @@ const CommentsInput = () => {
   const handleTarget = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (text && author) {
+    const author: HTMLInputElement | null =
+      document.querySelector('.log-in__author');
+
+    if (text && author && author.value) {
       saveMessage({
         variables: {
           text,
-          author,
+          author: author.value,
         },
       });
       setText('');
@@ -45,7 +43,7 @@ const CommentsInput = () => {
   return (
     <form
       action=""
-      className="comments-input"
+      className="messages-input"
       onSubmit={(event) => handleTarget(event)}
     >
       <input
@@ -58,4 +56,4 @@ const CommentsInput = () => {
   );
 };
 
-export default CommentsInput;
+export default MessagesInput;

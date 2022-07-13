@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import comments from './componentReducers/comments';
+import messages from './componentReducers/messages';
 
 export default configureStore({
   reducer: {
-    comments
+    messages
   }
 }); 
