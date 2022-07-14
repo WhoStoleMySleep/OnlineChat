@@ -25,6 +25,9 @@ const MESSAGES_QUERY = gql`
 
 const MessagesList = () => {
   const messages = useSelector((state: { messages: any }) => state.messages);
+  const { author } = useSelector(
+    (state: { author: { author: string } }) => state.author
+  );
   const dispatch = useDispatch();
 
   const idGen = () => {
