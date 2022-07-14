@@ -22,13 +22,13 @@
     position: absolute;
     left: calc(50% - 300px);
     top: calc(50% - 100px);
-    background: rgba(0, 0, 0, 0.603);
     border-radius: 8px;
     padding-top: 40px;
     box-sizing: border-box;
     display: none;
-    box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.05);
-    outline: 100vw solid rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &.open {
       display: block;
@@ -41,15 +41,17 @@
     border: none;
     background: none;
     outline: none;
-    background-color: rgba(0, 0, 0, 0.603);
     border-radius: 4px;
     margin-bottom: 20px;
-    padding-left: 15px;
     box-sizing: border-box;
-    caret-color: #fff;
-    color: rgba(255, 255, 255, 0.603);
+    caret-color: rgba(255, 249, 213, 0.267);
+    color: rgb(255, 249, 213);
     transition-duration: 50ms;
-    opacity: 0.6;
+    opacity: 0.8;
+    font-size: 19px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &:focus {
       opacity: 1;
@@ -63,15 +65,16 @@
   &__close-form {
     border: none;
     background: none;
-    background-color: rgba(0, 0, 0, 0.603);
     padding: 13px 40px;
     font-size: 19px;
     border-radius: 4px;
     font-weight: bold;
     box-sizing: border-box;
     color: rgb(255, 249, 213);
-    opacity: 0.6;
+    opacity: 0.8;
     transition-duration: 50ms;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &:hover {
       opacity: 1;
