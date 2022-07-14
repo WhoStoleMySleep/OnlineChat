@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/react-hoc';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './MessagesInput.scss';
 
 const addMessageMutation = gql`
@@ -15,6 +16,9 @@ const addMessageMutation = gql`
 const MessagesInput = () => {
   const [text, setText] = useState('');
 
+  const { author } = useSelector(
+    (state: { author: { author: string } }) => state.author
+  );
   const [saveMessage] = useMutation(addMessageMutation);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,14 +30,11 @@ const MessagesInput = () => {
   const handleTarget = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const author: HTMLInputElement | null =
-      document.querySelector('.log-in__author');
-
-    if (text && author && author.value) {
+    if (text && author) {
       saveMessage({
         variables: {
           text,
-          author: author.value,
+          author,
         },
       });
       setText('');
@@ -47,8 +48,9 @@ const MessagesInput = () => {
       onSubmit={(event) => handleTarget(event)}
     >
       <input
-        type="text"
+        className="messages-input__input"
         value={text}
+        placeholder="Enter your message"
         onChange={(event) => handleInput(event)}
       />
       <input type="submit" hidden />
