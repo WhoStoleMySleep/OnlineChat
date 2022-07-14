@@ -16,6 +16,14 @@ const addMessageMutation = gql`
 const MessagesInput = () => {
   const [text, setText] = useState('');
 
+  useEffect(() => {
+    const massageInput = document.querySelector('.messages-input__input');
+
+    setTimeout(() => {
+      massageInput?.removeAttribute('disabled');
+    }, 2000);
+  }, []);
+
   const { author } = useSelector(
     (state: { author: { author: string } }) => state.author
   );
@@ -38,6 +46,13 @@ const MessagesInput = () => {
         },
       });
       setText('');
+
+      const massageInput = document.querySelector('.messages-input__input');
+      massageInput?.setAttribute('disabled', 'disabled');
+
+      setTimeout(() => {
+        massageInput?.removeAttribute('disabled');
+      }, 2000);
     }
   };
 
@@ -52,6 +67,7 @@ const MessagesInput = () => {
         value={text}
         placeholder="Enter your message"
         onChange={(event) => handleInput(event)}
+        disabled
       />
       <input type="submit" hidden />
     </form>
