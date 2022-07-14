@@ -1,0 +1,29 @@
+.messages-input {
+  width: 100%;
+
+  &__input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    min-height: 50px;
+    padding: 0 20px 0 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    font-size: 20px;
+    opacity: 0.6;
+
+    &::placeholder {
+      color: #fff;
+    }
+
+    &:focus {
+      opacity: 1;
+
+      &::placeholder {
+        opacity: 0.8;
+      }
+    }
+  }
+}
