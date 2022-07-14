@@ -65,6 +65,19 @@ const MessagesList = () => {
 
   return (
     <ul className="messages-list">
+      {messages.messages.map(
+        (res: { text: string; id: number; author: string }) => (
+          <li
+            key={res.id}
+            className={`messages-list__message ${
+              author === res.author ? 'me-author' : ''
+            }`}
+          >
+            <p className="messages-list__author">{res.author}</p>
+            <p className="messages-list__text">{res.text}</p>
+          </li>
+        )
+      )}
     </ul>
   );
 };
