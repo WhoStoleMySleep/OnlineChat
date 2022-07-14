@@ -55,6 +55,14 @@ const MessagesList = () => {
     },
   });
 
+  useEffect(() => {
+    const messagesList = document.querySelector('.messages-list');
+
+    if (messagesList) {
+      messagesList.scrollTop = messagesList.scrollHeight;
+    }
+  });
+
   return (
     <ul className="messages-list">
     </ul>
