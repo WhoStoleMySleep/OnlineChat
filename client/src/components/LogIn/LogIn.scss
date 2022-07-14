@@ -1,6 +1,6 @@
 .log-in {
   width: fit-content;
-  margin: 20px 20px 0 auto;
+  margin: 20px 20px 10px auto;
 
   &__open-form {
     border: none;
@@ -27,7 +27,7 @@
     box-sizing: border-box;
     display: none;
     z-index: 10;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
     box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &.open {
@@ -36,7 +36,8 @@
   }
 
   &__author {
-    width: 350px;
+    max-width: 350px;
+    width: 100%;
     height: 38px;
     border: none;
     background: none;
@@ -78,6 +79,26 @@
 
     &:hover {
       opacity: 1;
+    }
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .log-in {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .log-in {
+    &__form {
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 0;
+      padding-top: 40vh;
+      background: rgba(0, 0, 0, 0.8);
     }
   }
 }

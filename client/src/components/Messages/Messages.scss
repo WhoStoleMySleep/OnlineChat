@@ -8,9 +8,31 @@
   padding-top: 10px;
   box-sizing: border-box;
   position: relative;
-  transition-duration: 250ms;
+  transition-duration: 150ms;
 
   &:focus-within {
     border-radius: 18px;
+  }
+}
+
+@media all and (min-width: 1440px) {
+  .messages {
+    max-width: none;
+    width: 70%;
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .messages {
+    border-radius: 0;
+    height: calc(100vh - 48px - 10px);
+    box-shadow: none;
+    background: none;
+  }
+}
+
+@media all and (max-width: 425px) {
+  .messages {
+    height: calc(100vh - 48px - 10px);
   }
 }

@@ -2,14 +2,14 @@
   width: 100%;
   height: 70vh;
   display: block;
-  overflow: auto;
+  overflow-y: auto;
   box-sizing: border-box;
   list-style-type: none;
   padding: 0;
   margin: 0;
 
   &::-webkit-scrollbar {
-    opacity: 0;
+    width: 0;
   }
 
   &__message {
@@ -17,18 +17,36 @@
     width: fit-content;
     padding: 5px;
     position: relative;
-    margin: 20px 0 0 20px;
+    margin: 20px 40px 0 20px;
     padding: 5px 20px;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    border-radius: 10px 10px 10px 0;
     text-align: left;
+
+    &::before {
+      content: '';
+      width: 10px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.2);
+      position: absolute;
+      left: -10px;
+      bottom: 0;
+      border-radius: 100% 0 0 30%;
+    }
 
     p {
       word-wrap: break-word;
     }
 
     &.me-author {
-      margin: 20px 20px 0 auto;
+      margin: 20px 20px 40px auto;
+      border-radius: 10px 10px 0 10px;
+
+      &::before {
+        left: auto;
+        right: -10px;
+        border-radius: 0 100% 30% 0;
+      }
 
       .messages-list__author {
         text-align: right;
@@ -52,5 +70,43 @@
   &__text {
     color: #fff;
     font-size: 20px;
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .messages-list {
+    height: calc(100% - 50px);
+  }
+}
+
+@media all and (max-width: 900px) {
+  .messages-list {
+    &__message {
+      max-width: 40%;
+    }
+  }
+}
+
+@media all and (max-width: 620px) {
+  .messages-list {
+    &__message {
+      max-width: 60%;
+      margin-left: 5px;
+      margin: 20px 40px 0 5px;
+
+      &::before {
+        width: 5px;
+        height: 4px;
+        left: -5px;
+      }
+
+      &.me-author {
+        margin: 20px 5px 40px auto;
+
+        &::before {
+          right: -5px;
+        }
+      }
+    }
   }
 }
