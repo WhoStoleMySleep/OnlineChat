@@ -36,7 +36,7 @@ const MessagesList = () => {
   const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
 
   useEffect(() => {
-    if (!loadingQuery) dispatch(setMessages(dataQuery.messages));
+    if (!loadingQuery) dispatch(setMessages(dataQuery.messages.slice(-39)));
   }, [!loadingQuery]);
 
   const { loading, data } = useSubscription(MESSAGES_SUBSCRIPTION, {
@@ -44,7 +44,10 @@ const MessagesList = () => {
       const message = data.subscriptionData.data.messageCreated;
 
       dispatch(
-        setMessages([...messages.messages, { id: idGen(), ...message }])
+        setMessages([
+          ...messages.messages.slice(-38),
+          { id: idGen(), ...message },
+        ])
       );
     },
   });
