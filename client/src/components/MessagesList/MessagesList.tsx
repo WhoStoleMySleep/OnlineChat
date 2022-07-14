@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMessages } from '../../redux/componentReducers/messages';
 import './MessagesList.scss';
+import notificationSfx from '../../assets/sounds/notification.mp3';
+import useSound from 'use-sound';
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
@@ -42,6 +44,8 @@ const MessagesList = () => {
     if (!loadingQuery) dispatch(setMessages(dataQuery.messages.slice(-39)));
   }, [!loadingQuery]);
 
+  const [play] = useSound(notificationSfx);
+
   const { loading, data } = useSubscription(MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const message = data.subscriptionData.data.messageCreated;
@@ -52,6 +56,10 @@ const MessagesList = () => {
           { id: idGen(), ...message },
         ])
       );
+
+      if (message.author !== author) {
+        play();
+      }
     },
   });
 

@@ -14,6 +14,8 @@ import store from './redux/store';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 
+import './index.d';
+
 const httpLink = new HttpLink({
   uri: 'https://adasdasdasdasdasdsdfsdfsdfsdfs.herokuapp.com/graphql',
 });
