@@ -73,6 +73,12 @@
   }
 }
 
+@media all and (max-width: 1020px) {
+  .messages-list {
+    height: calc(100vh - 10px - 48px - 10px - 50px);
+  }
+}
+
 @media all and (max-width: 900px) {
   .messages-list {
     &__message {
