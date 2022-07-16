@@ -7,7 +7,6 @@
   border-radius: 4px;
   padding-top: 10px;
   box-sizing: border-box;
-  position: relative;
   transition-duration: 150ms;
 
   &:focus-within {
@@ -25,14 +24,8 @@
 @media all and (max-width: 1020px) {
   .messages {
     border-radius: 0;
-    height: calc(100vh - 48px - 10px);
     box-shadow: none;
     background: none;
-  }
-}
-
-@media all and (max-width: 425px) {
-  .messages {
-    height: calc(100vh - 48px - 10px);
+    max-height: calc(100vh - 10px - 48px);
   }
 }
