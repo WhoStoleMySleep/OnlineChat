@@ -5,6 +5,7 @@ import { setMessages } from '../../redux/componentReducers/messages';
 import './MessagesList.scss';
 import notificationSfx from '../../assets/sounds/notification.mp3';
 import useSound from 'use-sound';
+import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
@@ -27,6 +28,10 @@ const MESSAGES_QUERY = gql`
 
 const MessagesList = () => {
   const messages = useSelector((state: { messages: any }) => state.messages);
+  const { unreadMessages } = useSelector(
+    (state: { unreadMessages: { unreadMessages: string[] } }) =>
+      state.unreadMessages
+  );
   const { author } = useSelector(
     (state: { author: { author: string } }) => state.author
   );
@@ -58,7 +63,23 @@ const MessagesList = () => {
       );
 
       if (message.author !== author) {
-        play();
+        if (document.hidden && message.text.split(' ')[0] === `@${author}`) {
+          play();
+          dispatch(
+            setUnreadMessages([
+              ...unreadMessages.slice(-3),
+              {
+                text: `${
+                  message.text.slice().length <= 53
+                    ? message.text.split(`@${author}`).join('')
+                    : message.text.split(`@${author}`).join('').slice(0, 52) +
+                      '...'
+                }`,
+                id: idGen(),
+              },
+            ])
+          );
+        }
       }
     },
   });
