@@ -5,6 +5,7 @@ import { setMessages } from '../../redux/componentReducers/messages';
 import './MessagesList.scss';
 import notificationSfx from '../../assets/sounds/notification.mp3';
 import useSound from 'use-sound';
+import { evaluate } from 'mathjs';
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
