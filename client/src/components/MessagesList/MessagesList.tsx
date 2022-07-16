@@ -64,6 +64,25 @@ const MessagesList = () => {
     },
   });
 
+  const heightInChrome = (): any => {
+    const browser: boolean = navigator.userAgent.includes('Chrome');
+    const widht: number = window.screen.width;
+    const height: number = window.screen.height;
+    const browserAndWidth: boolean = browser && widht <= 1020;
+
+    if (browserAndWidth && height) {
+      const calc = (params: string): string => {
+        return Math.trunc(evaluate(params)).toString();
+      };
+
+      return {
+        height: calc(`${height} - 120`) + 'px',
+      };
+    }
+
+    return {};
+  };
+
   useEffect(() => {
     const messagesList = document.querySelector('.messages-list');
 
@@ -73,7 +92,7 @@ const MessagesList = () => {
   });
 
   return (
-    <ul className="messages-list">
+    <ul className="messages-list" style={heightInChrome()}>
       {messages.messages.map(
         (res: { text: string; id: number; author: string }) => (
           <li
