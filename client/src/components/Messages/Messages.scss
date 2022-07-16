@@ -8,6 +8,8 @@
   padding-top: 10px;
   box-sizing: border-box;
   transition-duration: 150ms;
+  display: flex;
+  flex-direction: column;
 
   &:focus-within {
     border-radius: 18px;
