@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
 import './PopUp.scss';
 
-const PopUp = (props: { headed: string }) => {
+function PopUp(props: { headed: string }) {
   const { headed } = props;
 
   const { unreadMessages } = useSelector(
@@ -12,10 +12,10 @@ const PopUp = (props: { headed: string }) => {
   const dispatch = useDispatch();
 
   const onPopUpClose = (): void => {
-    const PopUp: HTMLDivElement | null = document.querySelector('.pop-up');
+    const PopUpElement: HTMLDivElement | null = document.querySelector('.pop-up');
 
-    if (PopUp && unreadMessages.length) {
-      PopUp.classList.add('hidden');
+    if (PopUpElement && unreadMessages.length) {
+      PopUpElement.classList.add('hidden');
       dispatch(setUnreadMessages([]));
     }
   };
@@ -27,8 +27,8 @@ const PopUp = (props: { headed: string }) => {
       </button>
       <h2 className="pop-up__headed">{headed}</h2>
       <ol className="pop-up__list">
-        {unreadMessages.length &&
-          unreadMessages.map((res: { text: string; id: string }) => (
+        {unreadMessages.length
+          && unreadMessages.map((res: { text: string; id: string }) => (
             <li className="pop-up__item" key={res.id}>
               {res.text}
             </li>
@@ -36,6 +36,6 @@ const PopUp = (props: { headed: string }) => {
       </ol>
     </div>
   );
-};
+}
 
 export default PopUp;

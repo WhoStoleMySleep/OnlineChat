@@ -1,9 +1,9 @@
-import './App.scss';
-import Messages from './components/Messages/Messages';
-import LogIn from './components/LogIn/LogIn';
-import { useEffect } from 'react';
-import PopUp from './components/PopUp/PopUp';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import './App.scss';
+import LogIn from './components/LogIn/LogIn';
+import Messages from './components/Messages/Messages';
+import PopUp from './components/PopUp/PopUp';
 
 function App() {
   const { unreadMessages } = useSelector(
@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <LogIn />
       <Messages />
-      <PopUp headed={'New messages!'} />
+      <PopUp headed="New messages!" />
     </div>
   );
 }

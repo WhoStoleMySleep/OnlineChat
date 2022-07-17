@@ -1,5 +1,10 @@
 import { gql, useMutation } from '@apollo/react-hoc';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useState
+} from 'react';
 import { useSelector } from 'react-redux';
 import './MessagesInput.scss';
 
@@ -13,7 +18,7 @@ const addMessageMutation = gql`
   }
 `;
 
-const MessagesInput = () => {
+function MessagesInput() {
   const [text, setText] = useState('');
 
   useEffect(() => {
@@ -72,6 +77,6 @@ const MessagesInput = () => {
       <input type="submit" hidden />
     </form>
   );
-};
+}
 
 export default MessagesInput;

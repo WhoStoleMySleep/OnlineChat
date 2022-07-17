@@ -1,11 +1,11 @@
 import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMessages } from '../../redux/componentReducers/messages';
-import './MessagesList.scss';
-import notificationSfx from '../../assets/sounds/notification.mp3';
 import useSound from 'use-sound';
+import notificationSfx from '../../assets/sounds/notification.mp3';
+import { setMessages } from '../../redux/componentReducers/messages';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
+import './MessagesList.scss';
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
@@ -26,7 +26,7 @@ const MESSAGES_QUERY = gql`
   }
 `;
 
-const MessagesList = () => {
+function MessagesList() {
   const messages = useSelector((state: { messages: any }) => state.messages);
   const { unreadMessages } = useSelector(
     (state: { unreadMessages: { unreadMessages: string[] } }) =>
@@ -51,7 +51,7 @@ const MessagesList = () => {
 
   const [play] = useSound(notificationSfx);
 
-  const { loading, data } = useSubscription(MESSAGES_SUBSCRIPTION, {
+  useSubscription(MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const message = data.subscriptionData.data.messageCreated;
 
@@ -72,8 +72,8 @@ const MessagesList = () => {
                 text: `${
                   message.text.slice().length <= 53
                     ? message.text.split(`@${author}`).join('')
-                    : message.text.split(`@${author}`).join('').slice(0, 52) +
-                      '...'
+                    : `${message.text.split(`@${author}`).join('').slice(0, 52)
+                    }...`
                 }`,
                 id: idGen(),
               },
@@ -109,6 +109,6 @@ const MessagesList = () => {
       )}
     </ul>
   );
-};
+}
 
 export default MessagesList;

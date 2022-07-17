@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { setAuthor } from '../../redux/componentReducers/login';
 import './LogIn.scss';
 
-const LogIn = () => {
+function LogIn() {
   const getLocalStorageAuthor = localStorage.getItem('author');
 
   const [authorState, setAuthorState] = useState(
-    getLocalStorageAuthor ? getLocalStorageAuthor : ''
+    getLocalStorageAuthor || ''
   );
 
   const dispatch = useDispatch();
@@ -64,6 +64,6 @@ const LogIn = () => {
       </form>
     </div>
   );
-};
+}
 
 export default LogIn;

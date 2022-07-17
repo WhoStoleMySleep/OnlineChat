@@ -3,16 +3,16 @@ import {
   ApolloProvider,
   HttpLink,
   InMemoryCache,
-  split,
+  split
 } from '@apollo/client';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.scss';
 import store from './redux/store';
-import { WebSocketLink } from '@apollo/client/link/ws';
-import { getMainDefinition } from '@apollo/client/utilities';
 
 import './index.d';
 
@@ -31,8 +31,8 @@ const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
     return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
+      definition.kind === 'OperationDefinition'
+      && definition.operation === 'subscription'
     );
   },
   wsLink,
