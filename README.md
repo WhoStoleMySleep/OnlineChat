@@ -204,3 +204,7 @@ npm start
 ```
 
 <br>
+
+<h2>Future scope</h2>
+
+- Message alerts while you were away
