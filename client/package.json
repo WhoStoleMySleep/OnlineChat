@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.9",
-    "@apollo/react-components": "^4.0.0",
     "@apollo/react-hoc": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",
