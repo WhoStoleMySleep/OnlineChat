@@ -208,3 +208,5 @@ npm start
 <h2>Future scope</h2>
 
 - Message alerts while you were away
+
+- Code coverage with tests
