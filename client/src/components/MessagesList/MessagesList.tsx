@@ -39,11 +39,6 @@ function MessagesList() {
   const { author } = useSelector(
     (state: { author: { author: string } }) => state.author
   );
-  const idGen = () => {
-    const min = Math.ceil(0);
-    const max = Math.floor(999999999);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
 
   useEffect(() => {
     if (!loadingQuery) dispatch(setMessages(dataQuery.messages.slice(-39)));
@@ -60,11 +55,12 @@ function MessagesList() {
   useSubscription(MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const message = data.subscriptionData.data.messageCreated;
+      const idGen = Math.floor(Math.random() * (999999999 + 1));
 
       dispatch(
         setMessages([
           ...messages.messages.slice(-38),
-          { id: idGen(), ...message },
+          { id: idGen, ...message },
         ])
       );
 
@@ -81,7 +77,7 @@ function MessagesList() {
                     : `${message.text.split(`@${author}`).join('').slice(0, 52)
                     }...`
                 }`,
-                id: idGen(),
+                id: idGen,
               },
             ])
           );
