@@ -5,12 +5,10 @@ import './LogIn.scss';
 
 function LogIn() {
   const getLocalStorageAuthor = localStorage.getItem('author');
-
+  const dispatch = useDispatch();
   const [authorState, setAuthorState] = useState(
     getLocalStorageAuthor || ''
   );
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setAuthor(authorState));

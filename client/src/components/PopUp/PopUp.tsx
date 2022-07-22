@@ -6,10 +6,10 @@ import './PopUp.scss';
 function PopUp(props: { headed: string }) {
   const { headed } = props;
 
+  const dispatch = useDispatch();
   const { unreadMessages } = useSelector(
     (state: { unreadMessages: { unreadMessages: any } }) => state.unreadMessages
   );
-  const dispatch = useDispatch();
 
   const onPopUpClose = (): void => {
     const PopUpElement: HTMLDivElement | null = document.querySelector('.pop-up');

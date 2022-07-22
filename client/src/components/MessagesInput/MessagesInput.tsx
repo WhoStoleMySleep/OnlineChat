@@ -20,6 +20,10 @@ const addMessageMutation = gql`
 
 function MessagesInput() {
   const [text, setText] = useState('');
+  const [saveMessage] = useMutation(addMessageMutation);
+  const { author } = useSelector(
+    (state: { author: { author: string } }) => state.author
+  );
 
   useEffect(() => {
     const massageInput = document.querySelector('.messages-input__input');
@@ -28,11 +32,6 @@ function MessagesInput() {
       massageInput?.removeAttribute('disabled');
     }, 2000);
   }, []);
-
-  const { author } = useSelector(
-    (state: { author: { author: string } }) => state.author
-  );
-  const [saveMessage] = useMutation(addMessageMutation);
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const targetValue = event.target.value;
@@ -44,6 +43,8 @@ function MessagesInput() {
     event.preventDefault();
 
     if (text && author) {
+      const massageInput = document.querySelector('.messages-input__input');
+
       saveMessage({
         variables: {
           text,
@@ -52,7 +53,6 @@ function MessagesInput() {
       });
       setText('');
 
-      const massageInput = document.querySelector('.messages-input__input');
       massageInput?.setAttribute('disabled', 'disabled');
 
       setTimeout(() => {

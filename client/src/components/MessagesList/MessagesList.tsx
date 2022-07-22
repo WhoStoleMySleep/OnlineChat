@@ -28,6 +28,10 @@ const MESSAGES_QUERY = gql`
 
 function MessagesList() {
   const messages = useSelector((state: { messages: any }) => state.messages);
+  const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
+  const [play] = useSound(notificationSfx);
+  const dispatch = useDispatch();
+
   const { unreadMessages } = useSelector(
     (state: { unreadMessages: { unreadMessages: string[] } }) =>
       state.unreadMessages
@@ -35,21 +39,23 @@ function MessagesList() {
   const { author } = useSelector(
     (state: { author: { author: string } }) => state.author
   );
-  const dispatch = useDispatch();
-
   const idGen = () => {
     const min = Math.ceil(0);
     const max = Math.floor(999999999);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
-
   useEffect(() => {
     if (!loadingQuery) dispatch(setMessages(dataQuery.messages.slice(-39)));
   }, [!loadingQuery]);
 
-  const [play] = useSound(notificationSfx);
+  useEffect(() => {
+    const messagesList = document.querySelector('.messages-list');
+
+    if (messagesList) {
+      messagesList.scrollTop = messagesList.scrollHeight;
+    }
+  });
 
   useSubscription(MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
@@ -82,14 +88,6 @@ function MessagesList() {
         }
       }
     },
-  });
-
-  useEffect(() => {
-    const messagesList = document.querySelector('.messages-list');
-
-    if (messagesList) {
-      messagesList.scrollTop = messagesList.scrollHeight;
-    }
   });
 
   return (
