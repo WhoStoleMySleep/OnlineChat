@@ -1,12 +1,12 @@
 .pop-up {
-  position: absolute;
-  width: 546px;
-  max-height: 60%;
-  right: 40px;
-  bottom: 40px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
+  bottom: 40px;
+  max-height: 60%;
   overflow: hidden;
+  position: absolute;
+  right: 40px;
+  width: 546px;
   z-index: 999999999;
 
   &.hidden {
@@ -14,17 +14,17 @@
   }
 
   &__close {
+    background: none;
+    border: none;
+    font-size: 25px;
+    line-height: 17px;
+    outline: none;
+    padding: 0;
     position: absolute;
     right: 10px;
     top: 10px;
-    font-size: 25px;
-    line-height: 17px;
-    width: 20px;
-    padding: 0;
-    background: none;
-    border: none;
-    outline: none;
     transition-duration: 500ms;
+    width: 20px;
 
     &:hover {
       transform: rotate(180deg);
@@ -32,24 +32,24 @@
   }
 
   &__list {
-    padding: 0 40px;
     font-size: 18px;
+    padding: 0 40px;
   }
 
   &__item {
-    margin-top: 10px;
     word-wrap: break-word;
+    margin-top: 10px;
   }
 }
 
 @media all and (max-width: 768px) {
   .pop-up {
-    width: 100%;
-    right: auto;
-    top: 0;
-    padding-top: 40px;
     height: 100vh;
     max-height: none;
+    padding-top: 40px;
+    right: auto;
+    top: 0;
+    width: 100%;
 
     &__close {
       top: 40px;

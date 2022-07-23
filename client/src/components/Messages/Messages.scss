@@ -1,13 +1,13 @@
 .messages {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding-top: 10px;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding-top: 10px;
   transition-duration: 150ms;
+  width: 100%;
 
   &:focus-within {
     border-radius: 18px;
@@ -23,9 +23,9 @@
 
 @media all and (max-width: 1020px) {
   .messages {
+    background: none;
     border-radius: 0;
     box-shadow: none;
-    background: none;
     max-height: calc(100vh - 10px - 48px);
   }
 }

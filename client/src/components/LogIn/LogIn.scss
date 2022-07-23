@@ -1,34 +1,34 @@
 .log-in {
-  width: fit-content;
   margin: 20px 20px 10px auto;
+  width: fit-content;
 
   &__open-form {
-    border: none;
     background: none;
     background-color: rgb(255, 174, 0);
-    padding: 13px 40px;
-    display: block;
-    font-size: 19px;
+    border: none;
     border-radius: 4px;
-    font-weight: bold;
     box-sizing: border-box;
     color: rgb(255, 249, 213);
+    display: block;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 13px 40px;
   }
 
   &__form {
-    max-width: 600px;
-    height: 200px;
-    width: 100%;
-    position: absolute;
-    left: calc(50% - 300px);
-    top: calc(50% - 100px);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 8px;
-    padding-top: 40px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     display: none;
+    height: 200px;
+    left: calc(50% - 300px);
+    max-width: 600px;
+    padding-top: 40px;
+    position: absolute;
+    top: calc(50% - 100px);
+    width: 100%;
     z-index: 10;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &.open {
       display: block;
@@ -36,23 +36,23 @@
   }
 
   &__author {
-    max-width: 350px;
-    width: 100%;
-    height: 38px;
-    border: none;
     background: none;
-    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
     border-radius: 4px;
-    margin-bottom: 20px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     caret-color: rgba(255, 249, 213, 0.267);
     color: rgb(255, 249, 213);
-    transition-duration: 50ms;
-    opacity: 0.8;
     font-size: 19px;
+    height: 38px;
+    margin-bottom: 20px;
+    max-width: 350px;
+    opacity: 0.8;
+    outline: none;
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    transition-duration: 50ms;
+    width: 100%;
 
     &:focus {
       opacity: 1;
@@ -64,18 +64,18 @@
   }
 
   &__close-form {
-    border: none;
     background: none;
-    padding: 13px 40px;
-    font-size: 19px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
     border-radius: 4px;
-    font-weight: bold;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     color: rgb(255, 249, 213);
+    font-size: 19px;
+    font-weight: bold;
     opacity: 0.8;
+    padding: 13px 40px;
     transition-duration: 50ms;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 
     &:hover {
       opacity: 1;
@@ -85,20 +85,20 @@
 
 @media all and (max-width: 1020px) {
   .log-in {
-    margin-top: 10px;
     margin-bottom: 0;
+    margin-top: 10px;
   }
 }
 
 @media all and (max-width: 600px) {
   .log-in {
     &__form {
-      top: 0;
-      left: 0;
-      height: 100%;
-      border-radius: 0;
-      padding-top: 40vh;
       background: rgba(0, 0, 0, 0.8);
+      border-radius: 0;
+      height: 100%;
+      left: 0;
+      padding-top: 40vh;
+      top: 0;
     }
   }
 }
