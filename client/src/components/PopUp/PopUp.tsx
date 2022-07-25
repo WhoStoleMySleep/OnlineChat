@@ -1,24 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import useClassHidden from '../../hooks/useClosePopUp/useClosePopUp';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
 import './PopUp.scss';
 
 function PopUp(props: { headed: string }) {
   const { headed } = props;
 
-  const dispatch = useDispatch();
   const { unreadMessages } = useSelector(
     (state: { unreadMessages: { unreadMessages: any } }) => state.unreadMessages
   );
 
-  const onPopUpClose = (): void => {
-    const PopUpElement: HTMLDivElement | null = document.querySelector('.pop-up');
-
-    if (PopUpElement && unreadMessages.length) {
-      PopUpElement.classList.add('hidden');
-      dispatch(setUnreadMessages([]));
-    }
-  };
+  const { onClick: onPopUpClose } = useClassHidden('pop-up', 'hidden', setUnreadMessages);
 
   return (
     <div className={`pop-up ${unreadMessages.length ? '' : 'hidden'}`}>
