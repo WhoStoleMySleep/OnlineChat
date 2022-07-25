@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import useClassOpen from '../../hooks/useClassOpen/useClassOpen';
+import useInputChange from '../../hooks/useInputChange/useInputChange';
+import useSubmitAuthor from '../../hooks/useSubmitAuthor/useSubmitAuthor';
 import { setAuthor } from '../../redux/componentReducers/login';
 import './LogIn.scss';
 
@@ -14,48 +17,42 @@ function LogIn() {
     dispatch(setAuthor(authorState));
   }, []);
 
-  const onFromOpen = () => {
-    const form = document.querySelector('.log-in__form');
-
-    if (form) {
-      form.classList.add('open');
-    }
-  };
-
-  const onFormSubmit = (event?: any) => {
-    event?.preventDefault();
-    const form = document.querySelector('.log-in__form');
-
-    if (form && authorState) {
-      form?.classList.remove('open');
-      localStorage.setItem('author', authorState);
-      dispatch(setAuthor(authorState));
-    }
-  };
-
-  const onInputChange = (event: any) => {
-    setAuthorState(event.target.value);
-  };
+  const { onClick: onFromOpen } = useClassOpen('log-in__form', 'open');
+  const { onSubmit: onFormSubmit } = useSubmitAuthor('onSubmit', 'log-in__form', 'open', authorState, setAuthor);
+  const { onClick: onSubmitButtonClick } = useSubmitAuthor('onClick', 'log-in__form', 'open', authorState, setAuthor);
+  const { onChange: onInputChange } = useInputChange(setAuthorState);
 
   return (
     <div className="log-in">
-      <button type="button" className="log-in__open-form" onClick={onFromOpen}>
+      <button
+        type="button"
+        className="log-in__open-form"
+        onClick={onFromOpen}
+        data-testid="login-open-button"
+      >
         Log-In
       </button>
-      <form action="" className="log-in__form" onSubmit={onFormSubmit}>
+      <form
+        action=""
+        className="log-in__form"
+        onSubmit={onFormSubmit}
+        data-testid="login-form"
+      >
         <input
           type="text"
           className="log-in__author"
           placeholder="Enter your nickname"
           maxLength={25}
           value={authorState}
-          onChange={(event) => onInputChange(event)}
+          onChange={onInputChange}
+          data-testid="login-name-input"
         />
         <br />
         <button
           type="button"
           className="log-in__close-form"
-          onClick={onFormSubmit}
+          onClick={onSubmitButtonClick}
+          data-testid="login-submit-button"
         >
           Сonfirm
         </button>
