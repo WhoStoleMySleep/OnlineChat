@@ -1,11 +1,8 @@
 import { gql, useMutation } from '@apollo/react-hoc';
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import useCreateMessage from '../../hooks/useCreateMessage/useCreateMessage';
+import useInputChange from '../../hooks/useInputChange/useInputChange';
 import './MessagesInput.scss';
 
 const addMessageMutation = gql`
@@ -25,6 +22,9 @@ function MessagesInput() {
     (state: { author: { author: string } }) => state.author
   );
 
+  const { onChange: onInputChange } = useInputChange(setText);
+  const { onSubmit: onFormSubmit } = useCreateMessage(text, author, 'messages-input__input', saveMessage, setText);
+
   useEffect(() => {
     const massageInput = document.querySelector('.messages-input__input');
 
@@ -33,45 +33,17 @@ function MessagesInput() {
     }, 2000);
   }, []);
 
-  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const targetValue = event.target.value;
-
-    setText(targetValue);
-  };
-
-  const handleTarget = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (text && author) {
-      const massageInput = document.querySelector('.messages-input__input');
-
-      saveMessage({
-        variables: {
-          text,
-          author,
-        },
-      });
-      setText('');
-
-      massageInput?.setAttribute('disabled', 'disabled');
-
-      setTimeout(() => {
-        massageInput?.removeAttribute('disabled');
-      }, 2000);
-    }
-  };
-
   return (
     <form
       action=""
       className="messages-input"
-      onSubmit={(event) => handleTarget(event)}
+      onSubmit={onFormSubmit}
     >
       <input
         className="messages-input__input"
         value={text}
         placeholder="Enter your message"
-        onChange={(event) => handleInput(event)}
+        onChange={onInputChange}
         disabled
       />
       <input type="submit" hidden />
