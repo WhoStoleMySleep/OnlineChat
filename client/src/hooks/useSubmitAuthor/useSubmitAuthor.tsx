@@ -10,11 +10,11 @@ function useSubmitAuthor(
   // eslint-disable-next-line no-unused-vars
   reducer: (value: string) => AnyAction
 ) {
-  if (formClassName && openClassName) {
+  if (onChange && formClassName && openClassName && state && reducer) {
     const dispatch = useDispatch();
 
     return {
-      [onChange]: (event: SyntheticEvent<EventTarget>) => {
+      [onChange]: (event?: SyntheticEvent<EventTarget>) => {
         event?.preventDefault();
 
         const form = document.querySelector(`.${formClassName}`);
@@ -28,7 +28,7 @@ function useSubmitAuthor(
     };
   }
 
-  return { [onChange]: () => {} };
+  return { [onChange || 'func']: () => 'No data entered' };
 }
 
 export default useSubmitAuthor;
