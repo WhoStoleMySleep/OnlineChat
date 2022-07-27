@@ -20,7 +20,7 @@ function useSubmitAuthor(
         const form = document.querySelector(`.${formClassName}`);
 
         if (form && state) {
-          form?.classList.remove('open');
+          form?.classList.remove(openClassName);
           localStorage.setItem('author', state);
           dispatch(reducer(state));
         }
