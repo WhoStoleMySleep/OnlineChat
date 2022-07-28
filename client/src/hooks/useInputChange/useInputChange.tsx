@@ -1,14 +1,14 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 // eslint-disable-next-line no-unused-vars
-function useInputChange(setText: (text: string) => void) {
-  if (setText) {
-    return {
-      onChange: (event: ChangeEvent<HTMLInputElement>) => setText(event.target.value),
-    };
-  }
+function useInputChange() {
+  const [text, setText] = useState('');
 
-  return { onChange: () => {} };
+  return {
+    onChange: (event: ChangeEvent<HTMLInputElement>) => setText(event.target.value),
+    text,
+    setText
+  };
 }
 
 export default useInputChange;
