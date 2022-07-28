@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import '@testing-library/jest-dom';
 import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -8,9 +9,15 @@ import store from '../../redux/store';
 import useSubmitAuthor from './useSubmitAuthor';
 
 describe('useSubmitAuthor', () => {
+  let authorName: string;
+
+  beforeAll(() => {
+    authorName = faker.name.firstName();
+  });
+
   it('Correct usage', async () => {
     const wrapper = ({ children }: any) => <Provider store={store}>{children}</Provider>;
-    const { result: submitAuthorResult } = renderHook(() => useSubmitAuthor('onClick', 'form', 'open', 'author', setAuthor), { wrapper });
+    const { result: submitAuthorResult } = renderHook(() => useSubmitAuthor('onClick', 'form', 'open', authorName, setAuthor), { wrapper });
     const { onClick } = submitAuthorResult.current;
 
     const { result: selectorResult } = renderHook(() => useSelector(
@@ -36,7 +43,7 @@ describe('useSubmitAuthor', () => {
 
     await userEvent.click(button);
 
-    expect(selectorResult.current.author).toMatch('author');
+    expect(selectorResult.current.author).toMatch(authorName);
     expect(form).toHaveClass('form');
   });
 
@@ -47,19 +54,19 @@ describe('useSubmitAuthor', () => {
   });
 
   it('No class to add', () => {
-    const { onClick } = useSubmitAuthor('onClick', 'form', '', 'author', setAuthor);
+    const { onClick } = useSubmitAuthor('onClick', 'form', '', authorName, setAuthor);
 
     expect(onClick()).toMatch('No data entered');
   });
 
   it('There is no element class on which to hang the class', () => {
-    const { onClick } = useSubmitAuthor('onClick', '', 'open', 'author', setAuthor);
+    const { onClick } = useSubmitAuthor('onClick', '', 'open', authorName, setAuthor);
 
     expect(onClick()).toMatch('No data entered');
   });
 
   it('No function name', () => {
-    const { func } = useSubmitAuthor('', 'form', 'open', 'author', setAuthor);
+    const { func } = useSubmitAuthor('', 'form', 'open', authorName, setAuthor);
 
     expect(func()).toMatch('No data entered');
   });
