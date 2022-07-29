@@ -11,7 +11,7 @@ function useClassOpen(elementAddClassName: string, openClassName: string) {
     };
   }
 
-  return { onClick: () => {} };
+  return { onClick: () => 'No data entered' };
 }
 
 export default useClassOpen;
