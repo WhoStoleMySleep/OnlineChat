@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 
 // eslint-disable-next-line no-unused-vars
-function useInputChange() {
-  const [text, setText] = useState('');
+function useInputChange(initialState: string = '') {
+  const [text, setText] = useState(initialState);
 
   return {
     onChange: (event: ChangeEvent<HTMLInputElement>) => setText(event.target.value),
