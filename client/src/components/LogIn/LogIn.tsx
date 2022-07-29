@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import useClassOpen from '../../hooks/useClassOpen/useClassOpen';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
@@ -9,18 +9,15 @@ import './LogIn.scss';
 function LogIn() {
   const getLocalStorageAuthor = localStorage.getItem('author');
   const dispatch = useDispatch();
-  const [authorState, setAuthorState] = useState(
-    getLocalStorageAuthor || ''
-  );
-
-  useEffect(() => {
-    dispatch(setAuthor(authorState));
-  }, []);
 
   const { onClick: onFromOpen } = useClassOpen('log-in__form', 'open');
-  const { onSubmit: onFormSubmit } = useSubmitAuthor('onSubmit', 'log-in__form', 'open', authorState, setAuthor);
-  const { onClick: onSubmitButtonClick } = useSubmitAuthor('onClick', 'log-in__form', 'open', authorState, setAuthor);
-  const { onChange: onInputChange } = useInputChange(setAuthorState);
+  const { onChange: onInputChange, text } = useInputChange(getLocalStorageAuthor || '');
+  const { onSubmit: onFormSubmit } = useSubmitAuthor('onSubmit', 'log-in__form', 'open', text, setAuthor);
+  const { onClick: onSubmitButtonClick } = useSubmitAuthor('onClick', 'log-in__form', 'open', text, setAuthor);
+
+  useEffect(() => {
+    dispatch(setAuthor(text));
+  }, []);
 
   return (
     <div className="log-in">
@@ -43,7 +40,7 @@ function LogIn() {
           className="log-in__author"
           placeholder="Enter your nickname"
           maxLength={25}
-          value={authorState}
+          value={text}
           onChange={onInputChange}
           data-testid="login-name-input"
         />
