@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/react-hoc';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import useCreateMessage from '../../hooks/useCreateMessage/useCreateMessage';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
@@ -16,13 +16,12 @@ const addMessageMutation = gql`
 `;
 
 function MessagesInput() {
-  const [text, setText] = useState('');
   const [saveMessage] = useMutation(addMessageMutation);
   const { author } = useSelector(
     (state: { author: { author: string } }) => state.author
   );
 
-  const { onChange: onInputChange } = useInputChange(setText);
+  const { onChange: onInputChange, text, setText } = useInputChange();
   const { onSubmit: onFormSubmit } = useCreateMessage(text, author, 'messages-input__input', saveMessage, setText);
 
   useEffect(() => {
