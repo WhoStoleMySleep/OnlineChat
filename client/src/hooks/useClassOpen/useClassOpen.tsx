@@ -6,7 +6,11 @@ function useClassOpen(elementAddClassName: string, openClassName: string) {
 
         if (element) {
           element.classList.add(openClassName);
+        } else {
+          return 'undefined \'elementAddClassName\'';
         }
+
+        return 'Сorrect';
       }
     };
   }
