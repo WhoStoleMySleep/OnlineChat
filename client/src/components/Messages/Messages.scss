@@ -8,6 +8,7 @@
   padding-top: 10px;
   transition-duration: 150ms;
   width: 100%;
+  overflow: hidden;
 
   &:focus-within {
     border-radius: 18px;
@@ -27,5 +28,14 @@
     border-radius: 0;
     box-shadow: none;
     max-height: calc(100vh - 10px - 48px);
+  }
+}
+
+@media all and (max-width: 900px) {
+  .messages {
+    position: absolute;
+    top: -5px;
+    height: 100%;
+    z-index: 1;
   }
 }

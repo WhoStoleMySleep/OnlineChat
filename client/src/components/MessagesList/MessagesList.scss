@@ -75,6 +75,8 @@
 
 @media all and (max-width: 900px) {
   .messages-list {
+    height: calc(100vh - 48px - 20px - 50px);
+
     &__message {
       max-width: 40%;
     }
