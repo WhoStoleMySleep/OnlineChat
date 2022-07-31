@@ -8,20 +8,26 @@ function useClosePopUp(
   reducer: (value: []) => AnyAction
 ) {
   if (elementAddClassName && hiddenClassName && reducer) {
+    const dispatch = useDispatch();
+
     return {
       onClick: () => {
-        const dispatch = useDispatch();
         const element: HTMLDivElement | null = document.querySelector(`.${elementAddClassName}`);
 
         if (element) {
           element.classList.add(hiddenClassName);
+
           dispatch(reducer([]));
+        } else {
+          return 'undefined \'elementAddClassName\'';
         }
+
+        return 'Correct';
       }
     };
   }
 
-  return { onClick: () => {} };
+  return { onClick: () => 'No data entered' };
 }
 
 export default useClosePopUp;
