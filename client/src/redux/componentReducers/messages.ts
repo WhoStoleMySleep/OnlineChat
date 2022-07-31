@@ -7,6 +7,7 @@ export const messages = createSlice({
   },
   reducers: {
     setMessages: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.messages = action.payload;
     },
   },

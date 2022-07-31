@@ -7,6 +7,7 @@ export const unreadMessages = createSlice({
   },
   reducers: {
     setUnreadMessages: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.unreadMessages = action.payload;
     },
   },
