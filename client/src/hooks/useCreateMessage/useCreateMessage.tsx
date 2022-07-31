@@ -35,7 +35,7 @@ function useCreateMessage(
     };
   }
 
-  return { onSubmit: () => {} };
+  return { onSubmit: () => 'No data entered' };
 }
 
 export default useCreateMessage;
