@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { faker } from '@faker-js/faker';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -6,8 +7,14 @@ import React from 'react';
 import useClassOpen from './useClassOpen';
 
 describe('useClassOpen', () => {
+  let randomClassName: string;
+
+  beforeAll(() => {
+    randomClassName = faker.word.adjective();
+  });
+
   it('Correct usage', async () => {
-    const { onClick } = useClassOpen('form', 'open');
+    const { onClick } = useClassOpen('form', randomClassName);
 
     render(
       <div>
@@ -19,19 +26,17 @@ describe('useClassOpen', () => {
     const button = screen.getByTestId('button');
     const form = screen.getByTestId('form');
 
-    expect(onClick()).toMatch('Сorrect');
+    await userEvent.click(button);
+
+    expect(form).toHaveAttribute('class', `form ${randomClassName}`);
 
     await userEvent.click(button);
 
-    expect(form).toHaveAttribute('class', 'form open');
-
-    await userEvent.click(button);
-
-    expect(form).toHaveAttribute('class', 'form open');
+    expect(form).toHaveAttribute('class', `form ${randomClassName}`);
   });
 
   it('Incorrect class', async () => {
-    const { onClick } = useClassOpen('none', 'open');
+    const { onClick } = useClassOpen('none', randomClassName);
 
     render(
       <div>
