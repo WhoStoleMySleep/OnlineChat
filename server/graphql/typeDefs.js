@@ -18,9 +18,11 @@ module.exports = gql`
 
   type Mutation {
     createMessage(text: String!, author: String!): Message!
+    updateMessage(id: ID!, text: String!): [Message!]
   }
 
   type Subscription {
     messageCreated: Message
+    messageUpdated: Message
   }
 `;

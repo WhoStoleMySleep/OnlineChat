@@ -25,10 +25,30 @@ module.exports = {
         ...res._doc,
       };
     },
+    updateMessage: async (_, { id, text }) =>  {
+      const res = Message.find({ _id: id })
+
+      await Message.updateOne(
+        { _id: id },
+        { $set: { 'text': text } }
+      )
+
+      pubsub.publish('MESSAGE_UPDATED', {
+        messageCreated: {
+          id: id,
+          text: text,
+        },
+      });
+
+      return res
+    },
   },
   Subscription: {
     messageCreated: {
       subscribe: () => pubsub.asyncIterator('MESSAGE_CREATED'),
+    },
+    messageUpdated: {
+      subscribe: () => pubsub.asyncIterator('MESSAGE_UPDATED'),
     },
   },
   Query: {
