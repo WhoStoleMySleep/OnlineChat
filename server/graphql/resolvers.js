@@ -42,6 +42,19 @@ module.exports = {
 
       return res
     },
+    removeMessage: async (_, { id }) => {
+      const res = Message.find({ _id: id })
+
+      await Message.deleteOne({ _id: id })
+
+      pubsub.publish('MESSAGE_REMOVED', {
+        messageRemoved: {
+          id: id
+        }
+      })
+
+      return `Removed ${id}`
+    }
   },
   Subscription: {
     messageCreated: {
@@ -50,6 +63,9 @@ module.exports = {
     messageUpdated: {
       subscribe: () => pubsub.asyncIterator('MESSAGE_UPDATED'),
     },
+    messageRemoved: {
+      subscribe: () => pubsub.asyncIterator('MESSAGE_REMOVED')
+    }
   },
   Query: {
     messages: async () => {
