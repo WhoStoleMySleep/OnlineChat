@@ -27,11 +27,12 @@ const MESSAGES_QUERY = gql`
   }
 `;
 
-const MESSAGE_UPDATE = gql`
-  mutation($updateMessageId: ID!, $text: String!) {
-    updateMessage(id: $updateMessageId, text: $text) {
+const MESSAGES_QUERY = gql`
+  query Messages {
+    messages {
       id
       text
+      author
     }
   }
 `;
