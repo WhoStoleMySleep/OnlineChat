@@ -29,7 +29,7 @@ function useRetainUpdatedValue(functionName: string) {
     };
   }
 
-  return { onChange: () => 'No data entered' };
+  return { [`${functionName}onChange`]: () => 'No data entered' };
 }
 
 export default useRetainUpdatedValue;
