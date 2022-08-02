@@ -1,5 +1,7 @@
-import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
-import React, { useEffect } from 'react';
+import {
+  gql, useMutation, useQuery, useSubscription
+} from '@apollo/react-hoc';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSound from 'use-sound';
 import notificationSfx from '../../assets/sounds/notification.mp3';
@@ -26,10 +28,20 @@ const MESSAGES_QUERY = gql`
   }
 `;
 
+const MESSAGE_UPDATE = gql`
+  mutation($updateMessageId: ID!, $text: String!) {
+    updateMessage(id: $updateMessageId, text: $text) {
+      id
+      text
+    }
+  }
+`;
+
 function MessagesList() {
   const messages = useSelector((state: { messages: any }) => state.messages);
   const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
   const [play] = useSound(notificationSfx);
+  const [saveMessage] = useMutation(MESSAGE_UPDATE);
   const dispatch = useDispatch();
 
   const { unreadMessages } = useSelector(
