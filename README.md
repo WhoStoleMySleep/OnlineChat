@@ -26,6 +26,8 @@
 
 2. Enter your message in the "Enter your message" field and press the Enter button.
 
+3. To edit a message, you need to click on it, edit it and take the focus off (later I will make it possible to confirm the changes via enter)
+
 <br>
 
 <h2>About the project :</h2>
@@ -205,8 +207,10 @@ npm start
 
 <br>
 
-<h2>Future scope</h2>
+<h2>Future scope :</h2>
 
 - Message alerts while you were away
 
 - Code coverage with tests
+
+- Make it look like telegram or discord
