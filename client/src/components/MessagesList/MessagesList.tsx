@@ -17,12 +17,11 @@ const MESSAGES_SUBSCRIPTION = gql`
   }
 `;
 
-const MESSAGES_QUERY = gql`
-  query Messages {
-    messages {
+const MESSAGES_UPDATED = gql`
+  subscription MessageUpdated {
+    messageUpdated {
       id
       text
-      author
     }
   }
 `;
@@ -96,6 +95,26 @@ function MessagesList() {
         }
       }
     },
+  });
+
+  useSubscription(MESSAGES_UPDATED, {
+    onSubscriptionData: (data) => {
+      const message = data.subscriptionData.data.messageUpdated;
+
+      const array = messages.messages.slice(-38);
+      const { id, text } = message;
+      const result = [];
+
+      for (let index = 0; index < array.length; index += 1) {
+        result.push(array[index].id === id ? { ...array[index], text } : array[index]);
+      }
+
+      dispatch(
+        setMessages([
+          ...result
+        ])
+      );
+    }
   });
 
   return (
