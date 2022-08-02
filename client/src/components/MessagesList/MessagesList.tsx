@@ -117,6 +117,21 @@ function MessagesList() {
     }
   });
 
+  function autoSize(event: { target: HTMLElement; }) {
+    const element = event.target;
+
+    element.style.height = 'auto';
+    element.style.height = `${element.scrollHeight - 4}px`;
+  }
+
+  for (let index = 0; index < messages.messages.length; index += 1) {
+    const textContainer = document.querySelectorAll('.messages-list__text')[index];
+
+    if (textContainer && textContainer.tagName === 'TEXTAREA' && textContainer.scrollTop <= 27) {
+      (textContainer as HTMLTextAreaElement).style.height = `${textContainer.scrollHeight - 4}px`;
+    }
+  }
+
   return (
     <ul className="messages-list">
       {messages.messages.map(
