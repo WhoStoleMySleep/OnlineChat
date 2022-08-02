@@ -15,6 +15,7 @@ module.exports = {
 
       pubsub.publish('MESSAGE_CREATED', {
         messageCreated: {
+          id: res._id,
           text: text,
           author: author,
         },
@@ -34,7 +35,7 @@ module.exports = {
       )
 
       pubsub.publish('MESSAGE_UPDATED', {
-        messageCreated: {
+        messageUpdated: {
           id: id,
           text: text,
         },
