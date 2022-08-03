@@ -1,8 +1,9 @@
 import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSound from 'use-sound';
 import notificationSfx from '../../assets/sounds/notification.mp3';
+import useContextMenu from '../../hooks/useContextMenu/useContextMenu';
 import useRetainUpdatedValue from '../../hooks/useRetainUpdatedValue/useRetainUpdatedValue';
 import { setMessages } from '../../redux/componentReducers/messages';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
@@ -37,10 +38,12 @@ const MESSAGES_QUERY = gql`
 `;
 
 function MessagesList() {
+  const [editId, setEditId] = useState('');
   const messages = useSelector((state: { messages: any }) => state.messages);
   const { loading: loadingQuery, data: dataQuery } = useQuery(MESSAGES_QUERY);
   const [play] = useSound(notificationSfx);
   const { onBlur } = useRetainUpdatedValue('onBlur');
+  const { onContextMenu } = useContextMenu('context-menu');
   const dispatch = useDispatch();
 
   const { unreadMessages } = useSelector(
@@ -132,6 +135,12 @@ function MessagesList() {
     }
   }
 
+  const her = (event: { key: string; target: { blur: () => void; }; }) => {
+    if (event.key === 'Enter') {
+      event.target.blur();
+    }
+  };
+
   return (
     <ul className="messages-list">
       {messages.messages.map(
@@ -140,10 +149,24 @@ function MessagesList() {
             key={res.id}
             className={`messages-list__message ${
               author === res.author ? 'me-author' : ''
-            }`}
+            } ${editId === res.id ? 'edit' : ''}`}
+            onContextMenu={
+              (event) => (
+                author === res.author
+                  ? onContextMenu(event, setEditId, res.id)
+                  : ''
+              )
+            }
+            onTouchStart={
+              (event) => (
+                author === res.author
+                  ? onContextMenu(event, setEditId, res.id)
+                  : ''
+              )
+            }
           >
             <p className="messages-list__author">{res.author}</p>
-            {author !== res.author
+            {editId !== res.id
               ? <p className="messages-list__text">{res.text}</p>
               : (
                 <textarea
@@ -151,7 +174,8 @@ function MessagesList() {
                   className="messages-list__text"
                   rows={1}
                   onChange={autoSize}
-                  onBlur={(event) => onBlur(event, res.id)}
+                  onKeyDown={(event) => her(event)}
+                  onBlur={(event) => onBlur(event, res.id, setEditId)}
                 />
               )}
           </li>

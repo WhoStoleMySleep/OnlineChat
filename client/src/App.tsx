@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './App.scss';
+import ContextMenu from './components/ContextMenu/ContextMenu';
 import LogIn from './components/LogIn/LogIn';
 import Messages from './components/Messages/Messages';
 import PopUp from './components/PopUp/PopUp';
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <ContextMenu />
       <LogIn />
       <Messages />
       <PopUp headed="New messages!" />

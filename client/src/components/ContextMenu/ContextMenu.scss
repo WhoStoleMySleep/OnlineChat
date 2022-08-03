@@ -1,0 +1,37 @@
+.context-menu {
+  display: none;
+  position: absolute;
+  z-index: 99999999;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px 10px 10px 10px;
+
+  &.active {
+    display: block;
+  }
+
+  &__item-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+  }
+
+  &__link {
+    display: block;
+    padding: 0 40px;
+    color: rgb(255, 249, 213);
+    text-decoration: none;
+    font-weight: bold;
+    height: 48px;
+    line-height: 47px;
+
+    &:hover {
+      background-color: rgba(255,255,255, 0.1);
+    }
+  }
+}
+
+.fa-pencil,
+.fa-times {
+  font-size: 14px;
+  margin-right: 8px;
+}
