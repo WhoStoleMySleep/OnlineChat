@@ -15,7 +15,11 @@ function useRetainUpdatedValue(functionName: string) {
     const [saveMessage] = useMutation(MESSAGE_UPDATE);
 
     return {
-      [functionName]: (event: React.FocusEvent<HTMLTextAreaElement, Element>, id: number) => {
+      [functionName]: (
+        event: React.FocusEvent<HTMLTextAreaElement, Element>,
+        id: string,
+        // eslint-disable-next-line no-unused-vars
+      ) => {
         const updateMessageId = id;
         const text = event.target.value;
 

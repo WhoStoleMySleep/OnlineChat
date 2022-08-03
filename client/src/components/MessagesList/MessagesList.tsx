@@ -109,7 +109,11 @@ function MessagesList() {
       const result = [];
 
       for (let index = 0; index < array.length; index += 1) {
-        result.push(array[index].id === id ? { ...array[index], text } : array[index]);
+        result.push(
+          array[index].id === id
+            ? { ...array[index], text }
+            : array[index]
+        );
       }
 
       dispatch(
@@ -128,10 +132,19 @@ function MessagesList() {
   }
 
   for (let index = 0; index < messages.messages.length; index += 1) {
-    const textContainer = document.querySelectorAll('.messages-list__text')[index];
+    const textElement = document.querySelectorAll('.messages-list__text')[index];
 
-    if (textContainer && textContainer.tagName === 'TEXTAREA' && textContainer.scrollTop <= 27) {
-      (textContainer as HTMLTextAreaElement).style.height = `${textContainer.scrollHeight - 4}px`;
+    type textArea = HTMLTextAreaElement
+    const textElementCheck = (
+      textElement
+      && textElement.tagName === 'TEXTAREA'
+      && textElement.scrollTop <= 27
+    );
+
+    if (textElementCheck) {
+      (textElement as textArea).style.height = `
+        ${textElement.scrollHeight - 4}px
+      `;
     }
   }
 
