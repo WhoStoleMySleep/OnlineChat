@@ -1,12 +1,16 @@
 .context-menu {
-  display: none;
+  visibility: hidden;
   position: absolute;
   z-index: 99999999;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px 10px 10px 10px;
 
   &.active {
-    display: block;
+    visibility: visible;
+  }
+
+  &.reversed {
+    border-radius: 10px 4px 10px 10px;
   }
 
   &__item-list {

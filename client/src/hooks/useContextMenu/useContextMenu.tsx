@@ -37,23 +37,32 @@ function useContextMenu(contextMenuClass: string) {
         setState: (arg0: string) => void,
         id: string
       ) => {
-        event.preventDefault();
+        if ('pageY' in event) event.preventDefault();
 
-        const element: EventTarget | null = event.target;
+        const element = event.target;
         const mouseY = 'pageY' in event ? event.pageY : event.touches[0].pageY;
         const mouseX = 'pageX' in event ? event.pageX : event.touches[0].pageX;
+        const screenWidth = window.screen.width;
+        const contextMenuWidth = contextMenu?.offsetWidth;
 
         const contextMenuCheck = (
           contextMenu
           && element
           && !(element as HTMLElement).classList.contains('edit')
           && (element as HTMLElement).tagName !== 'TEXTAREA'
+          && contextMenuWidth
         );
 
-        if (contextMenuCheck) {
+        if (contextMenuCheck && mouseX + contextMenuWidth < screenWidth) {
           contextMenu.classList.add('active');
+          contextMenu.classList.remove('reversed');
           contextMenu.style.top = `${mouseY}px`;
           contextMenu.style.left = `${mouseX}px`;
+        } else if (contextMenuCheck && contextMenuWidth) {
+          contextMenu.classList.add('active', 'reversed');
+
+          contextMenu.style.top = `${mouseY}px`;
+          contextMenu.style.left = `${mouseX - contextMenuWidth}px`;
         }
 
         const contextItem = document.querySelectorAll('.context-menu__item');
