@@ -157,7 +157,7 @@ function MessagesList() {
   return (
     <ul className="messages-list">
       {messages.messages.map(
-        (res: { text: string; id: number; author: string }) => (
+        (res: { text: string; id: string; author: string }) => (
           <li
             key={res.id}
             className={`messages-list__message ${
