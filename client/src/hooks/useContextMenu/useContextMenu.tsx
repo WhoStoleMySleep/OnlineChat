@@ -1,9 +1,17 @@
+import { gql, useMutation } from '@apollo/react-hoc';
 import React from 'react';
+
+const MESSAGE_UPDATE = gql`
+  mutation($id: ID!) {
+    removeMessage(id: $id)
+  }
+`;
 
 function useContextMenu(contextMenuClass: string) {
   if (contextMenuClass) {
     type ctxMenuType = HTMLLIElement | null
     const contextMenu: ctxMenuType = document.querySelector(`.${contextMenuClass}`);
+    const [removeMessage] = useMutation(MESSAGE_UPDATE);
 
     document.addEventListener('click', (event) => {
       const element = event.target;
@@ -70,6 +78,14 @@ function useContextMenu(contextMenuClass: string) {
           }, 0);
 
           setState(id);
+        });
+
+        contextItem[1].addEventListener('click', () => {
+          removeMessage({
+            variables: {
+              id
+            }
+          });
         });
       }
     };

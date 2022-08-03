@@ -12,6 +12,7 @@ import './MessagesList.scss';
 const MESSAGES_SUBSCRIPTION = gql`
   subscription MessageCreated {
     messageCreated {
+      id
       text
       author
     }
@@ -23,6 +24,14 @@ const MESSAGES_UPDATED = gql`
     messageUpdated {
       id
       text
+    }
+  }
+`;
+
+const MESSAGES_REMOVED = gql`
+  subscription MessageUpdated {
+    messageRemoved {
+      id
     }
   }
 `;
@@ -69,12 +78,11 @@ function MessagesList() {
   useSubscription(MESSAGES_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const message = data.subscriptionData.data.messageCreated;
-      const idGen = Math.floor(Math.random() * (999999999 + 1));
 
       dispatch(
         setMessages([
           ...messages.messages.slice(-38),
-          { id: idGen, ...message },
+          { id: message.id, ...message },
         ])
       );
 
@@ -91,7 +99,7 @@ function MessagesList() {
                     : `${message.text.split(`@${author}`).join('').slice(0, 52)
                     }...`
                 }`,
-                id: idGen,
+                id: message.id,
               },
             ])
           );
@@ -119,6 +127,20 @@ function MessagesList() {
       dispatch(
         setMessages([
           ...result
+        ])
+      );
+    }
+  });
+
+  useSubscription(MESSAGES_REMOVED, {
+    onSubscriptionData: (data) => {
+      const message = data.subscriptionData.data.messageRemoved;
+
+      const array = messages.messages.slice(-39);
+
+      dispatch(
+        setMessages([
+          ...array.filter((element: {id: string}) => element.id !== message.id)
         ])
       );
     }

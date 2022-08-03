@@ -11,12 +11,12 @@ function ContextMenu() {
             Edit
           </a>
         </li>
-        {/* <li className="context-menu__item">
+        <li className="context-menu__item">
           <a href="##" className="context-menu__link">
             <i className="fa-times" />
             Delete
           </a>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );
