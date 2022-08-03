@@ -32,8 +32,8 @@ function useContextMenu(contextMenuClass: string) {
         event.preventDefault();
 
         const element: EventTarget | null = event.target;
-        const mouseX = 'pageX' in event ? event.pageX : event.touches[0].pageX;
         const mouseY = 'pageY' in event ? event.pageY : event.touches[0].pageY;
+        const mouseX = 'pageX' in event ? event.pageX : event.touches[0].pageX;
 
         const contextMenuCheck = (
           contextMenu
@@ -44,8 +44,8 @@ function useContextMenu(contextMenuClass: string) {
 
         if (contextMenuCheck) {
           contextMenu.classList.add('active');
-          contextMenu.style.top = `${mouseX}px`;
-          contextMenu.style.left = `${mouseY}px`;
+          contextMenu.style.top = `${mouseY}px`;
+          contextMenu.style.left = `${mouseX}px`;
         }
 
         const contextItem = document.querySelectorAll('.context-menu__item');
