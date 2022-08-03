@@ -131,24 +131,7 @@ function MessagesList() {
     element.style.height = `${element.scrollHeight - 4}px`;
   }
 
-  for (let index = 0; index < messages.messages.length; index += 1) {
-    const textElement = document.querySelectorAll('.messages-list__text')[index];
-
-    type textArea = HTMLTextAreaElement
-    const textElementCheck = (
-      textElement
-      && textElement.tagName === 'TEXTAREA'
-      && textElement.scrollTop <= 27
-    );
-
-    if (textElementCheck) {
-      (textElement as textArea).style.height = `
-        ${textElement.scrollHeight - 4}px
-      `;
-    }
-  }
-
-  const her = (event: { key: string; target: { blur: () => void; }; }) => {
+  const confirmWithEnter = (event: { key: string; target: { blur: () => void; }; }) => {
     if (event.key === 'Enter') {
       event.target.blur();
     }
@@ -187,7 +170,7 @@ function MessagesList() {
                   className="messages-list__text"
                   rows={1}
                   onChange={autoSize}
-                  onKeyDown={(event) => her(event)}
+                  onKeyDown={(event) => confirmWithEnter(event)}
                   onBlur={(event) => onBlur(event, res.id, setEditId)}
                 />
               )}

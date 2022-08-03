@@ -52,7 +52,21 @@ function useContextMenu(contextMenuClass: string) {
 
         contextItem[0].addEventListener('click', () => {
           setTimeout(() => {
-            ((element as HTMLElement)?.childNodes[1] as HTMLTextAreaElement).focus();
+            const textArea = ((element as HTMLElement)?.childNodes[1] as HTMLTextAreaElement);
+
+            textArea.focus();
+
+            const textElementCheck = (
+              textArea
+              && textArea.tagName === 'TEXTAREA'
+              && textArea.scrollTop <= 27
+            );
+
+            if (textElementCheck) {
+              textArea.style.height = `
+                ${textArea.scrollHeight - 4}px
+              `;
+            }
           }, 0);
 
           setState(id);
