@@ -26,7 +26,7 @@
 
 2. Enter your message in the "Enter your message" field and press the Enter button.
 
-3. To edit a message, you need to click on it, edit it and take the focus off (later I will make it possible to confirm the changes via enter)
+3. To edit a message, you need to right-click on it or click on the item (with your finger), edit it and remove the focus (press enter or confirm on mobile).
 
 <br>
 
@@ -42,6 +42,7 @@
   <li>MessagesInput - a form component for entering and creating messages.</li>
   <li>MessagesList - component for displaying all messages.</li>
   <li>PopUp - component for displaying messages sent with mentioning you with @ (@name).</li>
+  <li>ContextMenu - component that will contain the 'Edit' button to change the text and the 'Delete' button to delete the message</li>
 </ul>
 
 <h3>React components reducers</h3>
