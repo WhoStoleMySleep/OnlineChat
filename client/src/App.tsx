@@ -20,6 +20,21 @@ function App() {
     }
   }, [unreadMessages.length]);
 
+  useEffect(() => {
+    const messagesList = document.querySelector('.messages-list');
+    const contextMenu = document.querySelector('.context-menu');
+
+    messagesList!.addEventListener('scroll', () => {
+      if (contextMenu && contextMenu.classList.contains('active')) {
+        contextMenu.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+  }, []);
+
   return (
     <div className="App">
       <ContextMenu />

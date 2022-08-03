@@ -19,6 +19,7 @@ function useRetainUpdatedValue(functionName: string) {
         event: React.FocusEvent<HTMLTextAreaElement, Element>,
         id: string,
         // eslint-disable-next-line no-unused-vars
+        setState: (text: '') => void
       ) => {
         const updateMessageId = id;
         const text = event.target.value;
@@ -29,6 +30,8 @@ function useRetainUpdatedValue(functionName: string) {
             text
           }
         });
+
+        setState('');
       }
     };
   }
