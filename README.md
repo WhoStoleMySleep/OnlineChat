@@ -9,7 +9,7 @@
 <h2>Desctiption :</h2>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/98680950/182806459-babb958b-4bbd-4c83-9333-49cdd37341fc.gif" height="400px" />
+  <img src="https://user-images.githubusercontent.com/98680950/182806459-babb958b-4bbd-4c83-9333-49cdd37341fc.gif" />
 <p>
 
 <p align='center'>
