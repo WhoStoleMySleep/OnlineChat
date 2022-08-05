@@ -44,7 +44,7 @@
   <li>MessagesInput - a form component for entering and creating messages.</li>
   <li>MessagesList - component for displaying all messages.</li>
   <li>PopUp - component for displaying messages sent with mentioning you with @ (@name).</li>
-  <li>ContextMenu - component that will contain the 'Edit' button to change the text and the 'Delete' button to delete the message</li>
+  <li>ContextMenu - component that will contain the 'Edit' button to change the text and the 'Delete' button to delete the message.</li>
 </ul>
 
 <h3>React components reducers</h3>
@@ -76,7 +76,7 @@
 <h3>@reduxjs/toolkit</h3>
 
 - **The official, opinionated, batteries-included toolset for efficient Redux development**  
-(Formerly known as "Redux Starter Kit")
+(Formerly known as "Redux Starter Kit").
 
 <br>
 
@@ -111,7 +111,7 @@ The web needs more (tasteful) sounds!
 
 <h3>@graphql-tools/schema</h3>
 
-- Plugin to create graphql schemes
+- Plugin to create graphql schemes.
 
 <br>
 
@@ -126,7 +126,7 @@ The web needs more (tasteful) sounds!
 
 <h3>apollo-server-express</h3>
 
-- This is the Express integration of Apollo Server
+- This is the Express integration of Apollo Server.
 
 <br>
 
@@ -150,7 +150,7 @@ The web needs more (tasteful) sounds!
 
 <h3>mongoose</h3>
 
-- Elegant mongodb object modeling for node.js
+- Elegant mongodb object modeling for node.js.
 
 <br>
 
@@ -212,8 +212,8 @@ npm start
 
 <h2>Future scope :</h2>
 
-- Message alerts while you were away
+- Message alerts while you were away.
 
-- Code coverage with tests
+- Code coverage with tests.
 
-- Make it look like telegram or discord
+- Make it look like telegram or discord.
