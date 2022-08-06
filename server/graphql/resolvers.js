@@ -5,10 +5,11 @@ const pubsub = new PubSub();
 
 module.exports = {
   Mutation: {
-    async createMessage(_, { text, author }) {
+    async createMessage(_, { text, author, date }) {
       const newMessage = new Message({
         text: text,
         author: author,
+        date: date
       });
 
       const res = await newMessage.save();
@@ -18,6 +19,7 @@ module.exports = {
           id: res._id,
           text: text,
           author: author,
+          date: date
         },
       });
 

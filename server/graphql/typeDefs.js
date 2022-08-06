@@ -5,6 +5,7 @@ module.exports = gql`
     id: ID!
     text: String!
     author: String!
+    date: String!
   }
 
   input MessageInput {
@@ -17,7 +18,7 @@ module.exports = gql`
   }
 
   type Mutation {
-    createMessage(text: String!, author: String!): Message!
+    createMessage(text: String!, author: String!, date: String!): Message!
     updateMessage(id: ID!, text: String!): [Message!]
     removeMessage(id: ID!): String!
   }
