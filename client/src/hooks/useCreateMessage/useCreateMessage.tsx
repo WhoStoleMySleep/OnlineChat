@@ -5,7 +5,7 @@ function useCreateMessage(
   author: string,
   inputClassName: string,
   // eslint-disable-next-line no-unused-vars
-  saveMessage: (varriables: {variables: {text: string, author: string}}) => void,
+  saveMessage: (varriables: {variables: {text: string, author: string, date: string}}) => void,
   // eslint-disable-next-line no-unused-vars
   setText: (value: string) => void,
 ) {
@@ -16,11 +16,21 @@ function useCreateMessage(
 
         if (text && author) {
           const input = document.querySelector(`.${inputClassName}`);
+          const nowDate = new Date(Date.now());
+
+          const date = `
+            ${nowDate.getUTCHours()}:${nowDate.getUTCMinutes()}
+            |
+            ${nowDate.getUTCMonth()}
+            .${nowDate.getUTCDate()}
+            .${nowDate.getUTCFullYear()}
+          `.replace(/\s/g, '').replace('|', ' ');
 
           saveMessage({
             variables: {
               text,
               author,
+              date
             },
           });
           setText('');

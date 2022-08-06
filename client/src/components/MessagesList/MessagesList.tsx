@@ -15,6 +15,7 @@ const MESSAGES_SUBSCRIPTION = gql`
       id
       text
       author
+      date
     }
   }
 `;
@@ -162,7 +163,7 @@ function MessagesList() {
   return (
     <ul className="messages-list">
       {messages.messages.map(
-        (res: { text: string; id: string; author: string }) => (
+        (res: { text: string; id: string; author: string, date: string }) => (
           <li
             key={res.id}
             className={`messages-list__message ${

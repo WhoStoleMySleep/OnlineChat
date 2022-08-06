@@ -6,11 +6,12 @@ import useInputChange from '../../hooks/useInputChange/useInputChange';
 import './MessagesInput.scss';
 
 const addMessageMutation = gql`
-  mutation messageCreated($text: String!, $author: String!) {
-    createMessage(text: $text, author: $author) {
+  mutation messageCreated($text: String!, $author: String!, $date: String!) {
+    createMessage(text: $text, author: $author, date: $date) {
       id
       text
       author
+      date
     }
   }
 `;
