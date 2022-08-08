@@ -5,7 +5,7 @@ module.exports = gql`
     id: ID!
     text: String!
     author: String!
-    date: String!
+    date: String
   }
 
   input MessageInput {
