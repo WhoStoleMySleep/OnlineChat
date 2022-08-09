@@ -82,6 +82,11 @@
   p.messages-list__text {
     pointer-events: none;
   }
+
+  &__date {
+    color: #fff;
+    display: none;
+  }
 }
 
 @media all and (max-width: 900px) {

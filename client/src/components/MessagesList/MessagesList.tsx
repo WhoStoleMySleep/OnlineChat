@@ -197,6 +197,8 @@ function MessagesList() {
                   onBlur={(event) => onBlur(event, res.id, setEditId)}
                 />
               )}
+            {res.date
+              && <p className="messages-list__date">{res.date}</p>}
           </li>
         )
       )}
