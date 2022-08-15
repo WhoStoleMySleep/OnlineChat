@@ -1,4 +1,5 @@
 import { gql, useQuery, useSubscription } from '@apollo/react-hoc';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useSound from 'use-sound';
@@ -43,6 +44,7 @@ const MESSAGES_QUERY = gql`
       id
       text
       author
+      date
     }
   }
 `;
@@ -184,21 +186,23 @@ function MessagesList() {
               )
             }
           >
-            <p className="messages-list__author">{res.author}</p>
-            {editId !== res.id
-              ? <p className="messages-list__text">{res.text}</p>
-              : (
-                <textarea
-                  defaultValue={res.text}
-                  className="messages-list__text"
-                  rows={1}
-                  onChange={autoSize}
-                  onKeyDown={(event) => confirmWithEnter(event)}
-                  onBlur={(event) => onBlur(event, res.id, setEditId)}
-                />
-              )}
+            <div className="messages-list__message-content">
+              <p className="messages-list__author">{res.author}</p>
+              {editId !== res.id
+                ? <p className="messages-list__text">{res.text}</p>
+                : (
+                  <textarea
+                    defaultValue={res.text}
+                    className="messages-list__text"
+                    rows={1}
+                    onChange={autoSize}
+                    onKeyDown={(event) => confirmWithEnter(event)}
+                    onBlur={(event) => onBlur(event, res.id, setEditId)}
+                  />
+                )}
+            </div>
             {res.date
-              && <p className="messages-list__date">{res.date}</p>}
+              && <p className="messages-list__date">{formatDistanceToNow(new Date(res.date), { addSuffix: true })}</p>}
           </li>
         )
       )}

@@ -13,6 +13,30 @@
   }
 
   &__message {
+    width: fit-content;
+
+    &.me-author {
+      margin-left: auto;
+      margin: 0 20px 40px auto;
+
+      .messages-list__message-content {
+        border-radius: 10px 10px 0 10px;
+  
+        &::before {
+          border-radius: 0 100% 30% 0;
+          left: auto;
+          right: -10px;
+        }
+        
+        .messages-list__author {
+          text-align: right;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  &__message-content {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px 10px 10px 0;
     margin: 20px 40px 0 20px;
@@ -36,22 +60,6 @@
 
     p {
       word-wrap: break-word;
-    }
-
-    &.me-author {
-      border-radius: 10px 10px 0 10px;
-      margin: 20px 20px 40px auto;
-
-      &::before {
-        border-radius: 0 100% 30% 0;
-        left: auto;
-        right: -10px;
-      }
-
-      .messages-list__author {
-        text-align: right;
-        pointer-events: none;
-      }
     }
   }
 
@@ -85,7 +93,8 @@
 
   &__date {
     color: #fff;
-    display: none;
+    margin: 10px 0 0 0;
+    font-size: 12px;
   }
 }
 
