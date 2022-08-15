@@ -16,15 +16,7 @@ function useCreateMessage(
 
         if (text && author) {
           const input = document.querySelector(`.${inputClassName}`);
-          const nowDate = new Date(Date.now());
-
-          const date = `
-            ${nowDate.getUTCHours()}:${nowDate.getUTCMinutes()}
-            |
-            ${nowDate.getUTCMonth()}
-            .${nowDate.getUTCDate()}
-            .${nowDate.getUTCFullYear()}
-          `.replace(/\s/g, '').replace('|', ' ');
+          const date = `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`;
 
           saveMessage({
             variables: {
