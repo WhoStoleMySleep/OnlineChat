@@ -24,12 +24,14 @@ function useRetainUpdatedValue(functionName: string) {
         const updateMessageId = id;
         const text = event.target.value;
 
-        saveMessage({
-          variables: {
-            updateMessageId,
-            text
-          }
-        });
+        if (text) {
+          saveMessage({
+            variables: {
+              updateMessageId,
+              text
+            }
+          });
+        }
 
         setState('');
       }
