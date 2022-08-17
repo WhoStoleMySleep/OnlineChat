@@ -46,17 +46,8 @@
     position: relative;
     text-align: left;
     width: fit-content;
-
-    &::before {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 100% 0 0 30%;
-      bottom: 0;
-      content: '';
-      height: 7px;
-      left: -10px;
-      position: absolute;
-      width: 10px;
-    }
+    text-align: left;
+    margin-right: auto;
 
     p {
       word-wrap: break-word;
