@@ -1,4 +1,6 @@
 .messages-list {
+  $self: &;
+
   box-sizing: border-box;
   display: block;
   height: 70vh;
@@ -14,24 +16,31 @@
 
   &__message {
     width: fit-content;
+    margin: 20px 40px 15px 20px;
 
     &.me-author {
       margin-left: auto;
-      margin: 0 20px 40px auto;
+      text-align: right;
+      margin: 0 20px 15px auto;
 
-      .messages-list__message-content {
+      #{$self}__message-content {
         border-radius: 10px 10px 0 10px;
+        margin-left: auto;
+        margin-right: 0;
   
         &::before {
           border-radius: 0 100% 30% 0;
           left: auto;
           right: -10px;
         }
-        
-        .messages-list__author {
-          text-align: right;
-          pointer-events: none;
-        }
+      }
+
+      #{$self}__author {
+        pointer-events: none;
+      }
+
+      #{$self}__date {
+        text-align: right;
       }
     }
   }
@@ -39,12 +48,9 @@
   &__message-content {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px 10px 10px 0;
-    margin: 20px 40px 0 20px;
     max-width: 400px;
-    padding: 5px;
     padding: 5px 20px;
     position: relative;
-    text-align: left;
     width: fit-content;
     text-align: left;
     margin-right: auto;
@@ -84,8 +90,11 @@
 
   &__date {
     color: #fff;
-    margin: 10px 0 0 0;
+    margin: 8px 0 0 0;
     font-size: 12px;
+    opacity: 0.8;
+    pointer-events: none;
+    text-align: left;
   }
 }
 
