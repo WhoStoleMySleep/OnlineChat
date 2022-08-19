@@ -5,10 +5,10 @@
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 1000px;
+  overflow: hidden;
   padding-top: 10px;
   transition-duration: 150ms;
   width: 100%;
-  overflow: hidden;
 
   &:focus-within {
     border-radius: 18px;
@@ -33,9 +33,9 @@
 
 @media all and (max-width: 900px) {
   .messages {
+    height: 100%;
     position: absolute;
     top: -5px;
-    height: 100%;
     z-index: 1;
   }
 }

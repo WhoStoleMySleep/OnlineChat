@@ -12,13 +12,13 @@
   }
 
   &__message {
-    width: fit-content;
     margin: 20px 40px 15px 20px;
+    width: fit-content;
 
     &.me-author {
+      margin: 0 20px 15px auto;
       margin-left: auto;
       text-align: right;
-      margin: 0 20px 15px auto;
 
       #{$self}__message-content {
         border-radius: 10px 10px 0 10px;
@@ -45,51 +45,45 @@
   &__message-content {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px 10px 10px 0;
+    margin-right: auto;
     max-width: 400px;
     padding: 5px 20px;
     position: relative;
-    width: fit-content;
     text-align: left;
-    margin-right: auto;
-
-    p {
-      word-wrap: break-word;
-    }
   }
 
   &__author,
-  &__text {
+  &__text,
+  &__date {
     word-wrap: break-word;
-  }
-
-  &__author {
     color: #fff;
-    font-size: 23px;
-    font-weight: 600;
-    margin-bottom: 10px;
     pointer-events: none;
   }
 
+  &__author {
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
   &__text {
-    color: #fff;
-    font-size: 20px;
     background: none;
     border: none;
+    font-size: 20px;
+    max-width: 100%;
     outline: none;
     overflow: hidden;
     resize: none;
   }
 
-  .messages-list__text {
-    pointer-events: none;
+  textarea {
+    pointer-events: all;
   }
 
   &__date {
-    color: #fff;
     font-size: 12px;
     margin-top: 8px;
     opacity: 0.8;
-    pointer-events: none;
   }
 }
 
@@ -107,7 +101,6 @@
   .messages-list {
     &__message {
       margin: 20px 40px 0 5px;
-      margin-left: 5px;
       max-width: 60%;
 
       &::before {
