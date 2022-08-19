@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import './App.scss';
 import ContextMenu from './components/ContextMenu/ContextMenu';
 import LogIn from './components/LogIn/LogIn';
 import Messages from './components/Messages/Messages';
