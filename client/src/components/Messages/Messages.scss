@@ -1,7 +1,9 @@
+@import '../../styles/variables';
+
 .messages {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 12px $blackShadow;
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 1000px;

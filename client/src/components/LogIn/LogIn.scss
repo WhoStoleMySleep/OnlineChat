@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .log-in {
   margin: 20px 20px 10px auto;
   text-align: center;
@@ -9,7 +11,7 @@
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
-    color: rgb(255, 249, 213);
+    color: $buttonTextColor;
     display: block;
     font-size: 19px;
     font-weight: bold;
@@ -19,9 +21,9 @@
   }
 
   &__form {
-    background: rgba(0, 0, 0, 0.6);
+    background: $blackBackground;
     border-radius: 8px;
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 12px $blackShadow;
     box-sizing: border-box;
     display: none;
     height: 200px;
@@ -40,13 +42,13 @@
 
   &__author {
     background: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: $whiteBackground;
     border: none;
     border-radius: 4px;
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 12px $blackShadow;
     box-sizing: border-box;
     caret-color: rgba(255, 249, 213, 0.267);
-    color: rgb(255, 249, 213);
+    color: $buttonTextColor;
     font-size: 19px;
     height: 38px;
     margin-bottom: 20px;
@@ -68,12 +70,12 @@
 
   &__close-form {
     background: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: $whiteBackground;
     border: none;
     border-radius: 4px;
-    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 12px $blackShadow;
     box-sizing: border-box;
-    color: rgb(255, 249, 213);
+    color: $buttonTextColor;
     font-size: 19px;
     font-weight: bold;
     opacity: 0.8;
