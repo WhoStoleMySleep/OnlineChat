@@ -16,7 +16,7 @@ function useCreateMessage(
 
         if (text && author) {
           const input = document.querySelector(`.${inputClassName}`);
-          const date = `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`;
+          const date = new Date().toString();
 
           saveMessage({
             variables: {
