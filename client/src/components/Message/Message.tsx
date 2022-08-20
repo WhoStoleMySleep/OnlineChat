@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import classNames from 'classnames';
 import useContextMenu from '../../hooks/useContextMenu/useContextMenu';
 import useRetainUpdatedValue from '../../hooks/useRetainUpdatedValue/useRetainUpdatedValue';
 import contextMenuStyles from '../ContextMenu/ContextMenu.module.scss';
@@ -42,9 +43,10 @@ function Message(
 
   return (
     <li
-      className={`${styles.message} ${
-        MeAuthor === receivedAuthor ? styles['me-author'] : ''
-      } ${editId === id ? styles.edit : null}`}
+      className={classNames(styles.message, {
+        [styles['me-author']]: MeAuthor === receivedAuthor,
+        [styles.edit]: editId === id
+      })}
       onContextMenu={
         (event) => (
           MeAuthor === receivedAuthor
