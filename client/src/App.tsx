@@ -1,11 +1,13 @@
+// import Push from 'push.js';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import Push from 'push.js';
 import ContextMenu from './components/ContextMenu/ContextMenu';
+import contextMenuStyles from './components/ContextMenu/ContextMenu.module.scss';
 import LogIn from './components/LogIn/LogIn';
 import Messages from './components/Messages/Messages';
-import PopUp from './components/PopUp/PopUp';
 import messagesListStyles from './components/MessagesList/MessagesList.module.scss';
-import contextMenuStyles from './components/ContextMenu/ContextMenu.module.scss';
+import PopUp from './components/PopUp/PopUp';
 
 function App() {
   const { unreadMessages } = useSelector(
@@ -34,6 +36,8 @@ function App() {
     document.addEventListener('contextmenu', (event) => {
       event.preventDefault();
     });
+
+    Push.Permission.request();
   }, []);
 
   return (
