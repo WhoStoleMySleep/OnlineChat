@@ -6,6 +6,7 @@ import notificationSfx from '../../assets/sounds/notification.mp3';
 import {
   MESSAGES_QUERY, MESSAGES_REMOVED, MESSAGES_SUBSCRIPTION, MESSAGES_UPDATED
 } from '../../GraphQl.queries';
+import usePush from '../../hooks/usePush/usePush';
 import { setMessages } from '../../redux/componentReducers/messages';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
 import Message from '../Message/Message';
@@ -57,11 +58,19 @@ function MessagesList() {
       if (message.author !== author) {
         if (document.hidden && message.text.split(' ')[0] === `@${author}`) {
           play();
+
+          usePush(message.author, `${
+            message.text.slice().length <= 32
+              ? message.text.split(`@${author}`).join('')
+              : `${message.text.split(`@${author}`).join('').slice(0, 32)
+              }...`
+          }`);
+
           dispatch(
             setUnreadMessages([
               ...unreadMessages.slice(-3),
               {
-                text: `${
+                text: `${message.author}: ${
                   message.text.slice().length <= 53
                     ? message.text.split(`@${author}`).join('')
                     : `${message.text.split(`@${author}`).join('').slice(0, 52)
