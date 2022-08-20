@@ -65,20 +65,10 @@ npm install
 <h3>3) Launch</h3>
 
 <br>
-<h4>Running the client (application) :</h4>
+<h4>Running the client (application) and server (x2) :</h4>
 
 ```cmd
-cd client
-
-npm start
-```
-
-<br>
-<h4>Running the server :</h4>
-
-```cmd
-cd server
-
+cd [client/server]
 npm start
 ```
 
