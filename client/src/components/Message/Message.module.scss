@@ -1,0 +1,109 @@
+.message {
+  $self: &;
+  
+  margin: 20px 40px 15px 20px;
+  width: fit-content;
+
+  &.me-author {
+    margin: 0 20px 15px auto;
+    margin-left: auto;
+    text-align: right;
+
+    #{$self}__content {
+      border-radius: 10px 10px 0 10px;
+      margin-left: auto;
+      margin-right: 0;
+
+      &::before {
+        border-radius: 0 100% 30% 0;
+        left: auto;
+        right: -10px;
+      }
+    }
+
+    #{$self}__author {
+      pointer-events: none;
+    }
+
+    #{$self}__date {
+      text-align: right;
+    }
+  }
+
+  &__content {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px 10px 10px 0;
+    margin-right: auto;
+    max-width: 400px;
+    padding: 5px 20px;
+    position: relative;
+    text-align: left;
+    width: fit-content;
+    box-sizing: border-box;
+  }
+  
+  &__author,
+  &__text,
+  &__date {
+    word-wrap: break-word;
+    color: #fff;
+    pointer-events: none;
+  }
+  
+  &__author {
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  &__text {
+    background: none;
+    border: none;
+    font-size: 20px;
+    max-width: 100%;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+  }
+  
+  textarea {
+    pointer-events: all;
+  }
+  
+  &__date {
+    font-size: 12px;
+    margin-top: 8px;
+    opacity: 0.8;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .message {
+    max-width: 40%;
+
+    &__content {
+      max-width: 100%;
+    }
+  }
+}
+
+@media all and (max-width: 620px) {
+  .message {
+    margin: 20px 40px 0 5px;
+    max-width: 60%;
+
+    &::before {
+      height: 4px;
+      left: -5px;
+      width: 5px;
+    }
+
+    &.me-author {
+      margin: 20px 5px 40px auto;
+
+      &::before {
+        right: -5px;
+      }
+    }
+  }
+}
