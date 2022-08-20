@@ -4,26 +4,36 @@ import useClassOpen from '../../hooks/useClassOpen/useClassOpen';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
 import useSubmitAuthor from '../../hooks/useSubmitAuthor/useSubmitAuthor';
 import { setAuthor } from '../../redux/componentReducers/login';
-import './LogIn.scss';
+import styles from './LogIn.module.scss';
 
 function LogIn() {
   const getLocalStorageAuthor = localStorage.getItem('author');
   const dispatch = useDispatch();
 
-  const { onClick: onFromOpen } = useClassOpen('log-in__form', 'open');
-  const { onChange: onInputChange, text } = useInputChange(getLocalStorageAuthor || '');
-  const { onSubmit: onFormSubmit } = useSubmitAuthor('onSubmit', 'log-in__form', 'open', text, setAuthor);
-  const { onClick: onSubmitButtonClick } = useSubmitAuthor('onClick', 'log-in__form', 'open', text, setAuthor);
+  const { onChange: onInputChange, text } = useInputChange(
+    getLocalStorageAuthor || ''
+  );
+  const { onClick: onFromOpen } = useClassOpen(
+    styles['log-in__form'],
+    styles.open
+  );
+  const { onSubmit: onFormSubmit } = useSubmitAuthor(
+    'onSubmit',
+    styles['log-in__form'],
+    styles.open,
+    text,
+    setAuthor
+  );
 
   useEffect(() => {
     dispatch(setAuthor(text));
   }, []);
 
   return (
-    <div className="log-in">
+    <div className={styles['log-in']}>
       <button
         type="button"
-        className="log-in__open-form"
+        className={styles['log-in__open-form']}
         onClick={onFromOpen}
         data-testid="login-open-button"
       >
@@ -31,13 +41,13 @@ function LogIn() {
       </button>
       <form
         action=""
-        className="log-in__form"
+        className={styles['log-in__form']}
         onSubmit={onFormSubmit}
         data-testid="login-form"
       >
         <input
           type="text"
-          className="log-in__author"
+          className={styles['log-in__author']}
           placeholder="Enter your nickname"
           maxLength={25}
           value={text}
@@ -46,9 +56,8 @@ function LogIn() {
         />
         <br />
         <button
-          type="button"
-          className="log-in__close-form"
-          onClick={onSubmitButtonClick}
+          type="submit"
+          className={styles['log-in__close-form']}
           data-testid="login-submit-button"
         >
           Сonfirm
