@@ -7,7 +7,11 @@ const MESSAGE_UPDATE = gql`
   }
 `;
 
-function useContextMenu(contextMenuClass: string) {
+function useContextMenu(
+  contextMenuClass: string,
+  activeClass: string,
+  reverseClass: string,
+) {
   if (contextMenuClass) {
     type ctxMenuType = HTMLLIElement | null
     const contextMenu: ctxMenuType = document.querySelector(`.${contextMenuClass}`);
@@ -18,13 +22,12 @@ function useContextMenu(contextMenuClass: string) {
 
       const contextMenuRemove = (
         contextMenu
-        && contextMenu.classList.contains('active')
+        && contextMenu.classList.contains(activeClass)
         && element
-        && (element as HTMLElement).className !== 'messages-list__message me-author'
       );
 
       if (contextMenuRemove) {
-        contextMenu.classList.remove('active');
+        contextMenu.classList.remove(activeClass);
       }
     });
 
@@ -54,48 +57,50 @@ function useContextMenu(contextMenuClass: string) {
         );
 
         if (contextMenuCheck && mouseX + contextMenuWidth < screenWidth) {
-          contextMenu.classList.add('active');
-          contextMenu.classList.remove('reversed');
+          contextMenu.classList.add(activeClass);
+          contextMenu.classList.remove(reverseClass);
           contextMenu.style.top = `${mouseY}px`;
           contextMenu.style.left = `${mouseX}px`;
         } else if (contextMenuCheck && contextMenuWidth) {
-          contextMenu.classList.add('active', 'reversed');
+          contextMenu.classList.add(activeClass, reverseClass);
 
           contextMenu.style.top = `${mouseY}px`;
           contextMenu.style.left = `${mouseX - contextMenuWidth}px`;
         }
 
-        const contextItem = document.querySelectorAll('.context-menu__item');
+        const contextItem = contextMenu?.querySelectorAll('li') as unknown as HTMLLIElement[];
 
-        contextItem[0].addEventListener('click', () => {
-          setTimeout(() => {
-            const textArea = ((element as HTMLElement)?.childNodes[1] as HTMLTextAreaElement);
+        if (contextItem) {
+          contextItem[0].addEventListener('click', () => {
+            setTimeout(() => {
+              const textArea = ((element as HTMLElement)?.childNodes[1] as HTMLTextAreaElement);
 
-            textArea.focus();
+              textArea.focus();
 
-            const textElementCheck = (
-              textArea
-              && textArea.tagName === 'TEXTAREA'
-              && textArea.scrollTop <= 27
-            );
+              const textElementCheck = (
+                textArea
+                && textArea.tagName === 'TEXTAREA'
+                && textArea.scrollTop <= 27
+              );
 
-            if (textElementCheck) {
-              textArea.style.height = `
-                ${textArea.scrollHeight - 4}px
-              `;
-            }
-          }, 0);
+              if (textElementCheck) {
+                textArea.style.height = `
+                  ${textArea.scrollHeight - 4}px
+                `;
+              }
+            }, 0);
 
-          setState(id);
-        });
-
-        contextItem[1].addEventListener('click', () => {
-          removeMessage({
-            variables: {
-              id
-            }
+            setState(id);
           });
-        });
+
+          contextItem[1].addEventListener('click', () => {
+            removeMessage({
+              variables: {
+                id
+              }
+            });
+          });
+        }
       }
     };
   }
