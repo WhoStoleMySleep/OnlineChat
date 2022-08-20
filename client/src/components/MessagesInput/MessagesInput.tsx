@@ -1,20 +1,11 @@
 import { gql, useMutation } from '@apollo/react-hoc';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { addMessageMutation } from '../../GraphQl.queries';
 import useCreateMessage from '../../hooks/useCreateMessage/useCreateMessage';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
 import './MessagesInput.scss';
 
-const addMessageMutation = gql`
-  mutation messageCreated($text: String!, $author: String!, $date: String!) {
-    createMessage(text: $text, author: $author, date: $date) {
-      id
-      text
-      author
-      date
-    }
-  }
-`;
 
 function MessagesInput() {
   const [saveMessage] = useMutation(addMessageMutation);

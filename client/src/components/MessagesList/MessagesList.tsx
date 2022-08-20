@@ -6,48 +6,11 @@ import useSound from 'use-sound';
 import notificationSfx from '../../assets/sounds/notification.mp3';
 import useContextMenu from '../../hooks/useContextMenu/useContextMenu';
 import useRetainUpdatedValue from '../../hooks/useRetainUpdatedValue/useRetainUpdatedValue';
+import {
+  MESSAGES_QUERY, MESSAGES_REMOVED, MESSAGES_SUBSCRIPTION, MESSAGES_UPDATED
+} from '../../GraphQl.queries';
 import { setMessages } from '../../redux/componentReducers/messages';
 import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
-import './MessagesList.scss';
-
-const MESSAGES_SUBSCRIPTION = gql`
-  subscription MessageCreated {
-    messageCreated {
-      id
-      text
-      author
-      date
-    }
-  }
-`;
-
-const MESSAGES_UPDATED = gql`
-  subscription MessageUpdated {
-    messageUpdated {
-      id
-      text
-    }
-  }
-`;
-
-const MESSAGES_REMOVED = gql`
-  subscription MessageUpdated {
-    messageRemoved {
-      id
-    }
-  }
-`;
-
-const MESSAGES_QUERY = gql`
-  query Messages {
-    messages {
-      id
-      text
-      author
-      date
-    }
-  }
-`;
 
 function MessagesList() {
   const [editId, setEditId] = useState('');
