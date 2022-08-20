@@ -1,11 +1,10 @@
-import { gql, useMutation } from '@apollo/react-hoc';
+import { useMutation } from '@apollo/react-hoc';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { addMessageMutation } from '../../GraphQl.queries';
 import useCreateMessage from '../../hooks/useCreateMessage/useCreateMessage';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
-import './MessagesInput.scss';
-
+import styles from './MessagesInput.module.scss';
 
 function MessagesInput() {
   const [saveMessage] = useMutation(addMessageMutation);
@@ -14,10 +13,16 @@ function MessagesInput() {
   );
 
   const { onChange: onInputChange, text, setText } = useInputChange();
-  const { onSubmit: onFormSubmit } = useCreateMessage(text, author, 'messages-input__input', saveMessage, setText);
+  const { onSubmit: onFormSubmit } = useCreateMessage(
+    text,
+    author,
+    styles['messages-input__input'],
+    saveMessage,
+    setText
+  );
 
   useEffect(() => {
-    const massageInput = document.querySelector('.messages-input__input');
+    const massageInput = document.querySelector(`.${styles['messages-input__input']}`);
 
     setTimeout(() => {
       massageInput?.removeAttribute('disabled');
@@ -27,11 +32,11 @@ function MessagesInput() {
   return (
     <form
       action=""
-      className="messages-input"
+      className={styles['messages-input']}
       onSubmit={onFormSubmit}
     >
       <input
-        className="messages-input__input"
+        className={styles['messages-input__input']}
         value={text}
         placeholder="Enter your message"
         onChange={onInputChange}
