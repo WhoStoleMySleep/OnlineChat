@@ -1,0 +1,19 @@
+.messages-list {
+  $self: &;
+
+  box-sizing: border-box;
+  display: block;
+  height: 70vh;
+  overflow-y: auto;
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .messages-list {
+    height: calc(100vh - 48px - 20px - 50px);
+  }
+}

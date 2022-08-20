@@ -115,7 +115,7 @@ function MessagesList() {
   });
 
   return (
-    <ul className="messages-list">
+    <ul className={styles['messages-list']}>
       {messages.messages.map(
         (res: { text: string; id: string; author: string, date: string }) => (
           <Message
