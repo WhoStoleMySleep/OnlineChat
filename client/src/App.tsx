@@ -5,6 +5,7 @@ import LogIn from './components/LogIn/LogIn';
 import Messages from './components/Messages/Messages';
 import PopUp from './components/PopUp/PopUp';
 import messagesListStyles from './components/MessagesList/MessagesList.module.scss';
+import contextMenuStyles from './components/ContextMenu/ContextMenu.module.scss';
 
 function App() {
   const { unreadMessages } = useSelector(
@@ -21,7 +22,7 @@ function App() {
   }, [unreadMessages.length]);
 
   useEffect(() => {
-    const messagesList = document.querySelector('.messages-list');
+    const messagesList = document.querySelector(`.${messagesListStyles['messages-list']}`);
     const contextMenu = document.querySelector(`.${contextMenuStyles['context-menu']}`);
 
     messagesList!.addEventListener('scroll', () => {
