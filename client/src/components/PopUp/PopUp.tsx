@@ -1,7 +1,8 @@
+import classNames from 'classnames';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import useClassHidden from '../../hooks/useClosePopUp/useClosePopUp';
-import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
+import { setUnreadMessages } from '../../redux/reducers/unreadMessages';
 import styles from './PopUp.module.scss';
 
 function PopUp(props: { headed: string }) {
@@ -19,7 +20,12 @@ function PopUp(props: { headed: string }) {
   );
 
   return (
-    <div className={`${styles['pop-up']} ${unreadMessages.length ? '' : styles.hidden}`}>
+    <div
+      className={classNames(styles['pop-up'], {
+        [styles.hidden]: unreadMessages.length
+      })}
+      data-testid="popUp"
+    >
       <button
         type="button"
         className={styles['pop-up__close']}
