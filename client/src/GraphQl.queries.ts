@@ -50,6 +50,17 @@ const MESSAGES_QUERY = gql`
   }
 `;
 
+const MESSAGE_UPDATE = gql`
+  mutation($id: ID!) {
+    removeMessage(id: $id)
+  }
+`;
+
 export {
-  addMessageMutation, MESSAGES_SUBSCRIPTION, MESSAGES_UPDATED, MESSAGES_REMOVED, MESSAGES_QUERY
+  addMessageMutation,
+  MESSAGES_SUBSCRIPTION,
+  MESSAGES_UPDATED,
+  MESSAGES_REMOVED,
+  MESSAGES_QUERY,
+  MESSAGE_UPDATE
 };

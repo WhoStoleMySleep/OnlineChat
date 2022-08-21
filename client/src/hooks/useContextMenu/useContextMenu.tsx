@@ -1,11 +1,6 @@
-import { gql, useMutation } from '@apollo/react-hoc';
+import { useMutation } from '@apollo/react-hoc';
 import React from 'react';
-
-const MESSAGE_UPDATE = gql`
-  mutation($id: ID!) {
-    removeMessage(id: $id)
-  }
-`;
+import { MESSAGE_UPDATE } from '../../GraphQl.queries';
 
 function useContextMenu(
   contextMenuClass: string,
