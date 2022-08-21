@@ -7,8 +7,8 @@ import {
   MESSAGES_QUERY, MESSAGES_REMOVED, MESSAGES_SUBSCRIPTION, MESSAGES_UPDATED
 } from '../../GraphQl.queries';
 import usePush from '../../hooks/usePush/usePush';
-import { setMessages } from '../../redux/componentReducers/messages';
-import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
+import { setMessages } from '../../redux/reducers/messages';
+import { setUnreadMessages } from '../../redux/reducers/unreadMessages';
 import Message from '../Message/Message';
 import styles from './MessagesList.module.scss';
 

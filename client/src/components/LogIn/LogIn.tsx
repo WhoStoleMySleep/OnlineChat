@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import useClassOpen from '../../hooks/useClassOpen/useClassOpen';
 import useInputChange from '../../hooks/useInputChange/useInputChange';
 import useSubmitAuthor from '../../hooks/useSubmitAuthor/useSubmitAuthor';
-import { setAuthor } from '../../redux/componentReducers/login';
+import { setAuthor } from '../../redux/reducers/login';
 import styles from './LogIn.module.scss';
 
 function LogIn() {
