@@ -5,7 +5,7 @@ import styles from './Messages.module.scss';
 
 function Messages() {
   return (
-    <div className={styles.messages}>
+    <div className={styles.messages} data-testId="Messages">
       <MessagesList />
       <MessagesInput />
     </div>
