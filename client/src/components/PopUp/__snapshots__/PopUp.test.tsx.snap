@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message Message snapshot 1`] = `
+<div
+  class="pop-up"
+  data-testid="popUp"
+>
+  <button
+    class="pop-up__close"
+    type="button"
+  >
+    ×
+  </button>
+  <h2
+    class="pop-up__headed"
+  >
+    New messages!
+  </h2>
+  <ol
+    class="pop-up__list"
+  >
+    0
+  </ol>
+</div>
+`;
