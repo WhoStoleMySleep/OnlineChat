@@ -5,7 +5,7 @@ import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { setUnreadMessages } from '../../redux/componentReducers/unreadMessages';
+import { setUnreadMessages } from '../../redux/reducers/unreadMessages';
 import store from '../../redux/store';
 import useClosePopUp from './useClosePopUp';
 
