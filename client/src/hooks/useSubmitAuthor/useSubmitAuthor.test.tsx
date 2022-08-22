@@ -4,7 +4,7 @@ import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Provider, useSelector } from 'react-redux';
-import { setAuthor } from '../../redux/componentReducers/login';
+import { setAuthor } from '../../redux/reducers/login';
 import store from '../../redux/store';
 import useSubmitAuthor from './useSubmitAuthor';
 
