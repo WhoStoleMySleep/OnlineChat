@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContextMenu Snapshot test 1`] = `
+<nav
+  class="context-menu"
+  data-testid="context-menu"
+>
+  <ul
+    class="context-menu__item-list"
+  >
+    <li
+      class="context-menu__item"
+    >
+      <a
+        class="context-menu__link"
+        href="##"
+      >
+        <i
+          class="fa-pencil"
+        />
+        Edit
+      </a>
+    </li>
+    <li
+      class="context-menu__item"
+    >
+      <a
+        class="context-menu__link"
+        href="##"
+      >
+        <i
+          class="fa-times"
+        />
+        Delete
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

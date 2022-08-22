@@ -3,7 +3,7 @@ import styles from './ContextMenu.module.scss';
 
 function ContextMenu() {
   return (
-    <nav className={styles['context-menu']}>
+    <nav className={styles['context-menu']} data-testid="context-menu">
       <ul className={styles['context-menu__item-list']}>
         <li className={styles['context-menu__item']}>
           <a href="##" className={styles['context-menu__link']}>
