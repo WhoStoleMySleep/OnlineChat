@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LogIn Test Login snapshot 1`] = `
+<div
+  class="log-in"
+  data-testid="logIn"
+>
+  <button
+    class="log-in__open-form"
+    data-testid="openButton"
+    type="button"
+  >
+    Log-In
+  </button>
+  <form
+    action=""
+    class="log-in__form"
+    data-testid="form"
+  >
+    <input
+      class="log-in__author"
+      data-testid="input"
+      maxlength="25"
+      placeholder="Enter your nickname"
+      type="text"
+      value=""
+    />
+    <br />
+    <button
+      class="log-in__close-form"
+      data-testid="submitButton"
+      type="submit"
+    >
+      Сonfirm
+    </button>
+  </form>
+</div>
+`;

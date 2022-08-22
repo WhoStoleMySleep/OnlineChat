@@ -30,12 +30,12 @@ function LogIn() {
   }, []);
 
   return (
-    <div className={styles['log-in']}>
+    <div className={styles['log-in']} data-testid="logIn">
       <button
         type="button"
         className={styles['log-in__open-form']}
         onClick={onFromOpen}
-        data-testid="login-open-button"
+        data-testid="openButton"
       >
         Log-In
       </button>
@@ -43,7 +43,7 @@ function LogIn() {
         action=""
         className={styles['log-in__form']}
         onSubmit={onFormSubmit}
-        data-testid="login-form"
+        data-testid="form"
       >
         <input
           type="text"
@@ -52,13 +52,13 @@ function LogIn() {
           maxLength={25}
           value={text}
           onChange={onInputChange}
-          data-testid="login-name-input"
+          data-testid="input"
         />
         <br />
         <button
           type="submit"
           className={styles['log-in__close-form']}
-          data-testid="login-submit-button"
+          data-testid="submitButton"
         >
           Сonfirm
         </button>
