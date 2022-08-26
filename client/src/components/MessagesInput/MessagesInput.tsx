@@ -34,6 +34,7 @@ function MessagesInput() {
       action=""
       className={styles['messages-input']}
       onSubmit={onFormSubmit}
+      data-testid="form"
     >
       <input
         className={styles['messages-input__input']}
@@ -41,8 +42,9 @@ function MessagesInput() {
         placeholder="Enter your message"
         onChange={onInputChange}
         disabled
+        data-testid="input"
       />
-      <input type="submit" hidden />
+      <input type="submit" hidden data-testid="submitInput" />
     </form>
   );
 }

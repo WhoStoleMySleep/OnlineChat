@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message Message snapshot 1`] = `
+<form
+  action=""
+  class="messages-input"
+  data-testid="form"
+>
+  <input
+    class="messages-input__input"
+    data-testid="input"
+    disabled=""
+    placeholder="Enter your message"
+    value=""
+  />
+  <input
+    data-testid="submitInput"
+    hidden=""
+    type="submit"
+  />
+</form>
+`;
