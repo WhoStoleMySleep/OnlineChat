@@ -43,6 +43,7 @@ function Message(
 
   return (
     <li
+      data-testid="Message"
       className={classNames(styles.message, {
         [styles['me-author']]: MeAuthor === receivedAuthor,
         [styles.edit]: editId === id

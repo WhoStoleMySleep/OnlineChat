@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message Message snapshot 1`] = `
+<li
+  class="message"
+  data-testid="Message"
+>
+  <div
+    class="message__content"
+  >
+    <p
+      class="message__author"
+    >
+      321
+    </p>
+    <p
+      class="message__text"
+    >
+      123
+    </p>
+  </div>
+  <p
+    class="message__date"
+  >
+    less than a minute ago
+  </p>
+</li>
+`;
