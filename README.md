@@ -79,3 +79,5 @@ npm start
 - Message alerts while you were away.
 
 - Code coverage with tests.
+
+- Add registrations
