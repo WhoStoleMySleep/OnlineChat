@@ -36,7 +36,7 @@
 
 <h2>About the project :</h2>
 
-- In OnlineChat you can write messages, edit and delete them, you can send messages personally, with @name 'instead of name substitute the username' and if he is on the site but the tab or browser is hidden he will receive an audible alert and push notification with the username and the message
+- In OnlineChat you can write messages, edit and delete them, you can send messages personally, with @name 'instead of name substitute the username' and if he is on the site but the tab or browser is hidden he will receive an audible alert and push notification with the username and the message.
 
 <br>
 
@@ -80,4 +80,4 @@ npm start
 
 - Code coverage with tests.
 
-- Add registrations
+- Add registrations.
