@@ -42,7 +42,7 @@
 
 <h2>Installing :</h2>
 
-<h3>1) Cloning a repository</h3>
+<h3>1) Cloning a repository :</h3>
 
 <br>
 
@@ -52,7 +52,7 @@ git clone https://github.com/WhoStoleMySleep/OnlineChat.git
 
 <br>
 
-<h3>2) Installing the necessary modules</h3>
+<h3>2) Installing the necessary modules :</h3>
 
 <br>
 
@@ -62,7 +62,7 @@ npm install
 
 <br>
 
-<h3>3) Launch</h3>
+<h3>3) Launch :</h3>
 
 <br>
 <h4>Running the client (application) and server (x2) :</h4>
